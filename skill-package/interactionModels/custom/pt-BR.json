@@ -1,0 +1,238 @@
+{
+  "interactionModel": {
+      "languageModel": {
+          "invocationName": "abrir oraculo",
+          "intents": [
+              {
+                  "name": "AMAZON.CancelIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.HelpIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.StopIntent",
+                  "samples": []
+              },
+
+              {
+                  "name": "FriendsJokeIntent",
+                  "slots": [],
+                  "samples": [
+                      "voce conhece o vinicius"
+                  ]
+              },
+              {
+                "name": "FriendsJokeConfirmIntent",
+                "slots": [],
+                "samples": [
+                    "sim esta correto"
+                ]
+              },
+              {
+                  "name": "FriendsJokeDisplayIntent",
+                  "slots": [],
+                  "samples": [
+                      "sim gostaria de saber mais informacoes"
+                  ]
+              },
+              {
+                  "name": "AMAZON.NavigateHomeIntent",
+                  "samples": []
+              },
+              {
+                  "name": "HORARIO",
+                  "slots": [],
+                  "samples": [
+                      " HORARIO DE ATENDIMENTO"
+                  ]
+              },
+              {
+                  "name": "AGENDAMENTO",
+                  "slots": [
+                      {
+                          "name": "CONFIRMAR",
+                          "type": "AMAZON.Person"
+                      }
+                  ],
+                  "samples": [
+                      "AGENDAR MÉDICO",
+                      "FAZER AGENDAMENTO",
+                      "AGENDAMENTO"
+                  ]
+              },
+              {
+                  "name": "SERVICOS",
+                  "slots": [],
+                  "samples": [
+                      "CONHECER SERVIÇOS",
+                      "VOCE PODE LISTAR OS SERVICOS ",
+                      "QUAIS SÃO OS SERVIÇOS QUE VOCÊ OFERECE",
+                      "QUAIS SÃO OS SERVIÇOS"
+                  ]
+              },
+              {
+                  "name": "DETALHESSERVICOS",
+                  "slots": [
+                      {
+                          "name": "SERVICONAME",
+                          "type": "SERVICOS"
+                      }
+                  ],
+                  "samples": [
+                      "EXIBIR DETALHES SERVIÇO {SERVICONAME}",
+                      "DETALHES SERVIÇO {SERVICONAME}",
+                      "LISTAR DETALHES SERVIÇO {SERVICONAME}"
+                  ]
+              },
+              {
+                  "name": "INICIARAGENDAMENTO",
+                  "slots": [
+                      {
+                          "name": "NOMESERVICO",
+                          "type": "AMAZON.SearchQuery"
+                      }
+                  ],
+                  "samples": [
+                      "Fazer Agendamento de {NOMESERVICO}"
+                  ]
+              },
+              {
+                  "name": "AMAZON.MoreIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.NavigateSettingsIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.NextIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.PageUpIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.PageDownIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.PreviousIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.ScrollRightIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.ScrollDownIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.ScrollLeftIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.ScrollUpIntent",
+                  "samples": []
+              },
+              {
+                  "name": "RECADO",
+                  "slots": [],
+                  "samples": [
+                      "GRAVAR RECADO",
+                      "DEIXA RECADO",
+                      "DEIXAR MENSAGEM"
+                  ]
+              }
+          ],
+          "types": [
+              {
+                  "name": "SERVICOS",
+                  "values": [
+                      {
+                          "id": "5",
+                          "name": {
+                              "value": "NUTRIÇÃO FUNCIONAL",
+                              "synonyms": [
+                                  "Nutrição "
+                              ]
+                          }
+                      },
+                      {
+                          "id": "4",
+                          "name": {
+                              "value": "MASSAGEM",
+                              "synonyms": [
+                                  "MASSAGEM"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "3",
+                          "name": {
+                              "value": "AURICOLOTERAPIA",
+                              "synonyms": [
+                                  "AURICOLOTERAPIA"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "2",
+                          "name": {
+                              "value": "PSICOTERAPIA",
+                              "synonyms": [
+                                  "PSICOTERAPIA"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "1",
+                          "name": {
+                              "value": "REIKI",
+                              "synonyms": [
+                                  "REIKI"
+                              ]
+                          }
+                      }
+                  ]
+              }
+          ]
+      },
+      "dialog": {
+          "intents": [
+              {
+                  "name": "DETALHESSERVICOS",
+                  "delegationStrategy": "ALWAYS",
+                  "confirmationRequired": true,
+                  "prompts": {
+                      "confirmation": "Confirm.Intent.85189728447"
+                  },
+                  "slots": [
+                      {
+                          "name": "SERVICONAME",
+                          "type": "SERVICOS",
+                          "confirmationRequired": false,
+                          "elicitationRequired": false,
+                          "prompts": {}
+                      }
+                  ]
+              }
+          ],
+          "delegationStrategy": "ALWAYS"
+      },
+      "prompts": [
+          {
+              "id": "Confirm.Intent.85189728447",
+              "variations": [
+                  {
+                      "type": "PlainText",
+                      "value": "OK. ESTAREI EXIBINDO OS DETALHES E PREÇO DO SERVIÇO {SERVICONAME} . ESTÁ CORRETO ?"
+                  }
+              ]
+          }
+      ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "askcliStatesVersion": "2020-03-31",
+  "profiles": {
+    "default": {
+      "skillId": "amzn1.ask.skill.ab7e9112-14b1-42a0-8f4e-c8cc2b33f6cf",
+      "skillInfrastructure": {
+        "@ask-cli/cfn-deployer": {
+          "deployState": {
+            "default": {
+              "s3": {
+                "bucket": "ask-secretariajuaquina-marcio-useast1-1608078793766",
+                "key": "endpoint/build.zip"
+              },
+              "stackId": "arn:aws:cloudformation:us-east-1:592243908108:stack/ask-skill-secretaria-joana-nodejs-default-skillStack-1608078793766/6e423a30-3f36-11eb-8d96-0a803f1342f3",
+              "outputs": [
+                {
+                  "OutputKey": "SkillEndpoint",
+                  "OutputValue": "arn:aws:lambda:us-east-1:592243908108:function:ask-skill-secretaria-joana-node-AlexaSkillFunction-1SRAQ300GGYA3",
+                  "Description": "LambdaARN for the regional endpoint"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "skillMetadata": {
+        "lastDeployHash": "tLTyFYrpz6byRELZZ1uXCCSQh4I="
+      },
+      "code": {
+        "default": {
+          "lastDeployHash": "Dtoyc1lje/x5ttMLdoBbF7AN5jg="
+        }
+      }
+    }
+  }
+}
