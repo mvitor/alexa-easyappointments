@@ -7,8 +7,8 @@ const Speech = require( 'ssml-builder' );
 var AmazonSpeech = require('ssml-builder/amazon_speech');
 
 const supportsAPL = require('./lib').supportsAPL;
-//const i18n = require('i18next'); 
-//const sprintf = require('i18next-sprintf-postprocessor');
+const i18n = require('i18next'); 
+const sprintf = require('i18next-sprintf-postprocessor');
 
 const main = require('./templates/main.json');
 const home = require('./templates/home.json');
@@ -16,18 +16,7 @@ const display = require('./templates/display.json');
 
 const home_datasource = require('./templates/home_data.json');
 
-// // further down the index.js
-const languageStrings = {
-    //'en' : require('./i18n/en'),
-    'pt_BR' : require('./i18n/pt'),
-    // ... etc
-}
-const createSsml = (message) => {
-	return {
-		type: 'SSML',
-		ssml: `<speak> ${message} </speak>`
-	};
-}
+
 // const LaunchRequestHandler = {
 //     canHandle(handlerInput) {
 //         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
@@ -105,13 +94,12 @@ const LaunchRequestHandler = {
           const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
           var speech = new AmazonSpeech();
           speech.say(requestAttributes.t('WELCOME_MESSAGE'))
-          //speech.say('Conhesso alguns Vinicius. Deixe me pesquisar por Vinicius da sua lista de contatos.')
           .pause('1s')
           speech.say(requestAttributes.t('WELCOME_MESSAGE2'))
           .pause('500ms')
           return handlerInput.responseBuilder
             .speak(speech.ssml())
-            .reprompt("Como posso ajudar ?")
+            .reprompt(requestAttributes.t('WELCOME_PROMPT'))
             //.speak('Seja Bem vindo')
             .addDirective({
                 type: 'Alexa.Presentation.APL.RenderDocument',
@@ -131,35 +119,6 @@ const LaunchRequestHandler = {
         }
     }
 };
-
-        var speech = new AmazonSpeech();
-        speech.say('Conheço alguns Vinicius. Deixe me pesquisar por Vinicius da sua lista de contatos.')
-        //speech.say('Conhesso alguns Vinicius. Deixe me pesquisar por Vinicius da sua lista de contatos.')
-        .pause('2s')
-        speech.say('Encontrei um ! Se chama Vinicius Prado. Feio pra caramba, mas eh um cara legal')
-        .pause('500ms')
-        speech.say('Ele apaga mensagens no Whatsapp e está voltando do Caribe com o bumbum todo picado de injeção')
-        ///speech.say('Ele apagar mensagens no Whatsapp e está voltando do Caribe com o bumbum todo picado de injeção')
-        .pause('500ms')
-         speech.say('Deixa baixo, mas preciso te contar um segredo')
-        .pause('500ms')
-        speech.whisper('O Vinicius eh um baita de um viadão')
-        //speech.whisper('O Vinicius eh um baita de um viadao')
-        .pause('1s')
-        speech.say('Este eh o Vinicius que procura ?')
-        .pause('500ms')
-        speech.say('Gostaria de saber mais informassoes sobre, ou ver uma foto?')
-        let speechText = speech.ssml();
-        var speechConf = new AmazonSpeech();
-        speechConf.say('Este eh o Vinicius que procura ? Gostaria de saber mais ?')
-        return handlerInput.responseBuilder
-            .speak(speechText)
-            .reprompt(speechConf.ssml())
-            .getResponse();
-        //return FriendsJokeDisplayHandler.handle(handlerInput);
-    }
-};
-
 
 const HelpIntentHandler = {
     canHandle(handlerInput) {
@@ -236,53 +195,57 @@ const ErrorHandler = {
 };
 const LocalizationInterceptor = {
     process(handlerInput) {
-      // Gets the locale from the request and initializes i18next.
-      const localizationClient = i18n.init({
-        lng: handlerInput.requestEnvelope.request.locale,
-        resources: languageStrings,
-        returnObjects: true
-      });
-      // Creates a localize function to support arguments.
-      localizationClient.localize = function localize() {
-        // gets arguments through and passes them to
-        // i18next using sprintf to replace string placeholders
-        // with arguments.
-        const args = arguments;
-        const value = i18n.t(...args);
-        // If an array is used then a random value is selected
-        if (Array.isArray(value)) {
-          return value[Math.floor(Math.random() * value.length)];
+        const localizationClient = i18n.use(sprintf).init({
+            lng: handlerInput.requestEnvelope.request.locale,
+            fallbackLng: 'pt_BR', // not required
+            resources: languageStrings
+        });
+ 
+        localizationClient.localize = function () { // <-- this is important, because you add a function to localization client, which will resolve your copy
+            const args = arguments;
+            let values = [];
+ 
+            for (var i = 1; i < args.length; i++) {
+                values.push(args[i]);
+            }
+            const value = i18n.t(args[0], { // This is used to transform your copy and fill it with variables using sprintf postprocessor
+                returnObjects: true,
+                postProcess: 'sprintf',
+                sprintf: values
+            });
+ 
+            if (Array.isArray(value)) { // not required if you don't have arrays or don't want to take random values from them
+                return value[Math.floor(Math.random() * value.length)];
+            } else {
+                return value;
+            }
         }
-        return value;
-      };
-      // this gets the request attributes and save the localize function inside
-      // it to be used in a handler by calling requestAttributes.t(STRING_ID, [args...])
-      const attributes = handlerInput.attributesManager.getRequestAttributes();
-      attributes.t = function translate(...args) {
-        return localizationClient.localize(...args);
-      }
-    }
-  };
-// const LocalizationInterceptor = {  process(handlerInput) {    const localizationClient = i18n.use(sprintf).init({      lng: handlerInput.requestEnvelope.request.locale,      overloadTranslationOptionHandler: sprintf.overloadTranslationOptionHandler,      resources: languageStrings,      returnObjects: true    });
-//     const attributes = handlerInput.attributesManager.getRequestAttributes();    attributes.t = function (...args) {      return localizationClient.t(...args);    };  },};
-
+ 
+        const attributes = handlerInput.attributesManager.getRequestAttributes();
+        attributes.t = function (...args) {
+            return localizationClient.localize(...args); // <-- here you use that function, that you created which resolves copy by key and add it to the request attributes
+        };
+    },
+};
 // The SkillBuilder acts as the entry point for your skill, routing all request and response
 // payloads to the handlers above. Make sure any new handlers or interceptors you've
 // defined are included below. The order matters - they're processed top to bottom.
 exports.handler = Alexa.SkillBuilders.custom()
     .addRequestHandlers(
         LaunchRequestHandler,
-        FriendsJokeHandler,
-        FriendsJokeDisplayHandler,
-        FriendsJokeConfirmHandler, 
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         SessionEndedRequestHandler,
         IntentReflectorHandler, // make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
         ) 
+    .addRequestInterceptors(LocalizationInterceptor)
     .addErrorHandlers(
         ErrorHandler,
         )
     .lambda();
-
-    //.addRequestInterceptors(LocalizationInterceptor)
+// // further down the index.js
+const languageStrings = {
+    //'en' : require('./i18n/en'),
+    'pt_BR' : require('./i18n/pt')
+    // ... etc
+}

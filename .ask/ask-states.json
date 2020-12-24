@@ -2,7 +2,7 @@
   "askcliStatesVersion": "2020-03-31",
   "profiles": {
     "default": {
-      "skillId": "amzn1.ask.skill.ab7e9112-14b1-42a0-8f4e-c8cc2b33f6cf",
+      "skillId": "amzn1.ask.skill.10f02c3f-408c-463b-80b4-b1fadf0cc7b2",
       "skillInfrastructure": {
         "@ask-cli/cfn-deployer": {
           "deployState": {
@@ -24,7 +24,7 @@
         }
       },
       "skillMetadata": {
-        "lastDeployHash": "tLTyFYrpz6byRELZZ1uXCCSQh4I="
+        "lastDeployHash": "Qw9Br1rlmFLlCcRONR/wRMfhP+s="
       },
       "code": {
         "default": {

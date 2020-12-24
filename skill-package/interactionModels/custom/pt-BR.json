@@ -1,238 +1,345 @@
 {
-  "interactionModel": {
-      "languageModel": {
-          "invocationName": "abrir oraculo",
-          "intents": [
-              {
-                  "name": "AMAZON.CancelIntent",
-                  "samples": []
-              },
-              {
-                  "name": "AMAZON.HelpIntent",
-                  "samples": []
-              },
-              {
-                  "name": "AMAZON.StopIntent",
-                  "samples": []
-              },
-
-              {
-                  "name": "FriendsJokeIntent",
-                  "slots": [],
-                  "samples": [
-                      "voce conhece o vinicius"
-                  ]
-              },
-              {
-                "name": "FriendsJokeConfirmIntent",
-                "slots": [],
-                "samples": [
-                    "sim esta correto"
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "abrir clinica",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "HORARIO",
+                    "slots": [],
+                    "samples": [
+                        " HORARIO DE ATENDIMENTO"
+                    ]
+                },
+                {
+                    "name": "ScheduleStartIntent",
+                    "slots": [
+                        {
+                            "name": "ServiceName",
+                            "type": "SERVICOS",
+                            "samples": [
+                                "Gostaria de agendar {ServiceName}"
+                            ]
+                        },
+                        {
+                            "name": "ScheduleTime",
+                            "type": "AMAZON.DATE",
+                            "samples": [
+                                "Gostaria de agendar para {ScheduleTime}"
+                            ]
+                        },
+                        {
+                            "name": "ScheduleMassagist",
+                            "type": "Massagistas",
+                            "samples": [
+                                "Sim {ScheduleMassagist}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "AGENDAR {ServiceName}",
+                        "FAZER AGENDAMENTO {ServiceName}",
+                        "AGENDAMENTO {ServiceName}"
+                    ]
+                },
+                {
+                    "name": "SERVICOS",
+                    "slots": [],
+                    "samples": [
+                        "CONHECER SERVIÇOS",
+                        "VOCE PODE LISTAR OS SERVICOS ",
+                        "QUAIS SÃO OS SERVIÇOS QUE VOCÊ OFERECE",
+                        "QUAIS SÃO OS SERVIÇOS"
+                    ]
+                },
+                {
+                    "name": "DETALHESSERVICOS",
+                    "slots": [
+                        {
+                            "name": "SERVICONAME",
+                            "type": "SERVICOS"
+                        }
+                    ],
+                    "samples": [
+                        "EXIBIR DETALHES SERVIÇO {SERVICONAME}",
+                        "DETALHES SERVIÇO {SERVICONAME}",
+                        "LISTAR DETALHES SERVIÇO {SERVICONAME}"
+                    ]
+                },
+                {
+                    "name": "INICIARAGENDAMENTO",
+                    "slots": [
+                        {
+                            "name": "NOMESERVICO",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "Fazer Agendamento de {NOMESERVICO}"
+                    ]
+                },
+                {
+                    "name": "AMAZON.MoreIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateSettingsIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NextIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PageUpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PageDownIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PreviousIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollRightIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollDownIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollLeftIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollUpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "RECADO",
+                    "slots": [],
+                    "samples": [
+                        "GRAVAR RECADO",
+                        "DEIXA RECADO",
+                        "DEIXAR MENSAGEM"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "SERVICOS",
+                    "values": [
+                        {
+                            "id": "5",
+                            "name": {
+                                "value": "NUTRIÇÃO FUNCIONAL",
+                                "synonyms": [
+                                    "Nutrição "
+                                ]
+                            }
+                        },
+                        {
+                            "id": "4",
+                            "name": {
+                                "value": "MASSAGEM",
+                                "synonyms": [
+                                    "MASSAGEM"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "3",
+                            "name": {
+                                "value": "AURICOLOTERAPIA",
+                                "synonyms": [
+                                    "AURICOLOTERAPIA"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "1",
+                            "name": {
+                                "value": "REIKI",
+                                "synonyms": [
+                                    "REIKI"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Massagistas",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "Isabel Fernandes",
+                                "synonyms": [
+                                    "Isabel"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Raquel Dos Santos",
+                                "synonyms": [
+                                    "Raquel"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "1",
+                            "name": {
+                                "value": "João Carlos",
+                                "synonyms": [
+                                    "João"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "DETALHESSERVICOS",
+                    "delegationStrategy": "ALWAYS",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.85189728447"
+                    },
+                    "slots": [
+                        {
+                            "name": "SERVICONAME",
+                            "type": "SERVICOS",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        }
+                    ]
+                },
+                {
+                    "name": "ScheduleStartIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "ServiceName",
+                            "type": "SERVICOS",
+                            "confirmationRequired": true,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "confirmation": "Confirm.Slot.142462458727.992710224035",
+                                "elicitation": "Elicit.Slot.142462458727.992710224035"
+                            }
+                        },
+                        {
+                            "name": "ScheduleTime",
+                            "type": "AMAZON.DATE",
+                            "confirmationRequired": true,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "confirmation": "Confirm.Slot.15348239233.527079072911",
+                                "elicitation": "Elicit.Slot.15348239233.527079072911"
+                            }
+                        },
+                        {
+                            "name": "ScheduleMassagist",
+                            "type": "Massagistas",
+                            "confirmationRequired": true,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "confirmation": "Confirm.Slot.15348239233.1225824183537",
+                                "elicitation": "Elicit.Slot.15348239233.1225824183537"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
+        },
+        "prompts": [
+            {
+                "id": "Confirm.Intent.85189728447",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "OK. ESTAREI EXIBINDO OS DETALHES E PREÇO DO SERVIÇO {SERVICONAME} . ESTÁ CORRETO ?"
+                    }
                 ]
-              },
-              {
-                  "name": "FriendsJokeDisplayIntent",
-                  "slots": [],
-                  "samples": [
-                      "sim gostaria de saber mais informacoes"
-                  ]
-              },
-              {
-                  "name": "AMAZON.NavigateHomeIntent",
-                  "samples": []
-              },
-              {
-                  "name": "HORARIO",
-                  "slots": [],
-                  "samples": [
-                      " HORARIO DE ATENDIMENTO"
-                  ]
-              },
-              {
-                  "name": "AGENDAMENTO",
-                  "slots": [
-                      {
-                          "name": "CONFIRMAR",
-                          "type": "AMAZON.Person"
-                      }
-                  ],
-                  "samples": [
-                      "AGENDAR MÉDICO",
-                      "FAZER AGENDAMENTO",
-                      "AGENDAMENTO"
-                  ]
-              },
-              {
-                  "name": "SERVICOS",
-                  "slots": [],
-                  "samples": [
-                      "CONHECER SERVIÇOS",
-                      "VOCE PODE LISTAR OS SERVICOS ",
-                      "QUAIS SÃO OS SERVIÇOS QUE VOCÊ OFERECE",
-                      "QUAIS SÃO OS SERVIÇOS"
-                  ]
-              },
-              {
-                  "name": "DETALHESSERVICOS",
-                  "slots": [
-                      {
-                          "name": "SERVICONAME",
-                          "type": "SERVICOS"
-                      }
-                  ],
-                  "samples": [
-                      "EXIBIR DETALHES SERVIÇO {SERVICONAME}",
-                      "DETALHES SERVIÇO {SERVICONAME}",
-                      "LISTAR DETALHES SERVIÇO {SERVICONAME}"
-                  ]
-              },
-              {
-                  "name": "INICIARAGENDAMENTO",
-                  "slots": [
-                      {
-                          "name": "NOMESERVICO",
-                          "type": "AMAZON.SearchQuery"
-                      }
-                  ],
-                  "samples": [
-                      "Fazer Agendamento de {NOMESERVICO}"
-                  ]
-              },
-              {
-                  "name": "AMAZON.MoreIntent",
-                  "samples": []
-              },
-              {
-                  "name": "AMAZON.NavigateSettingsIntent",
-                  "samples": []
-              },
-              {
-                  "name": "AMAZON.NextIntent",
-                  "samples": []
-              },
-              {
-                  "name": "AMAZON.PageUpIntent",
-                  "samples": []
-              },
-              {
-                  "name": "AMAZON.PageDownIntent",
-                  "samples": []
-              },
-              {
-                  "name": "AMAZON.PreviousIntent",
-                  "samples": []
-              },
-              {
-                  "name": "AMAZON.ScrollRightIntent",
-                  "samples": []
-              },
-              {
-                  "name": "AMAZON.ScrollDownIntent",
-                  "samples": []
-              },
-              {
-                  "name": "AMAZON.ScrollLeftIntent",
-                  "samples": []
-              },
-              {
-                  "name": "AMAZON.ScrollUpIntent",
-                  "samples": []
-              },
-              {
-                  "name": "RECADO",
-                  "slots": [],
-                  "samples": [
-                      "GRAVAR RECADO",
-                      "DEIXA RECADO",
-                      "DEIXAR MENSAGEM"
-                  ]
-              }
-          ],
-          "types": [
-              {
-                  "name": "SERVICOS",
-                  "values": [
-                      {
-                          "id": "5",
-                          "name": {
-                              "value": "NUTRIÇÃO FUNCIONAL",
-                              "synonyms": [
-                                  "Nutrição "
-                              ]
-                          }
-                      },
-                      {
-                          "id": "4",
-                          "name": {
-                              "value": "MASSAGEM",
-                              "synonyms": [
-                                  "MASSAGEM"
-                              ]
-                          }
-                      },
-                      {
-                          "id": "3",
-                          "name": {
-                              "value": "AURICOLOTERAPIA",
-                              "synonyms": [
-                                  "AURICOLOTERAPIA"
-                              ]
-                          }
-                      },
-                      {
-                          "id": "2",
-                          "name": {
-                              "value": "PSICOTERAPIA",
-                              "synonyms": [
-                                  "PSICOTERAPIA"
-                              ]
-                          }
-                      },
-                      {
-                          "id": "1",
-                          "name": {
-                              "value": "REIKI",
-                              "synonyms": [
-                                  "REIKI"
-                              ]
-                          }
-                      }
-                  ]
-              }
-          ]
-      },
-      "dialog": {
-          "intents": [
-              {
-                  "name": "DETALHESSERVICOS",
-                  "delegationStrategy": "ALWAYS",
-                  "confirmationRequired": true,
-                  "prompts": {
-                      "confirmation": "Confirm.Intent.85189728447"
-                  },
-                  "slots": [
-                      {
-                          "name": "SERVICONAME",
-                          "type": "SERVICOS",
-                          "confirmationRequired": false,
-                          "elicitationRequired": false,
-                          "prompts": {}
-                      }
-                  ]
-              }
-          ],
-          "delegationStrategy": "ALWAYS"
-      },
-      "prompts": [
-          {
-              "id": "Confirm.Intent.85189728447",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "OK. ESTAREI EXIBINDO OS DETALHES E PREÇO DO SERVIÇO {SERVICONAME} . ESTÁ CORRETO ?"
-                  }
-              ]
-          }
-      ]
-  }
+            },
+            {
+                "id": "Elicit.Slot.142462458727.992710224035",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Por favor me diga o nome do servisso que gostaria de agendar"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Slot.142462458727.992710224035",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Ok. Voce quer agendar {ServiceName}"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.15348239233.527079072911",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Para quando voce gostaria de agendar ?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Slot.15348239233.527079072911",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Tudo bem. Você quer agendar para {ScheduleTime}"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.15348239233.1225824183537",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Tem preferência por algum massagista, se sim diga o nome"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Slot.15348239233.1225824183537",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Ok. Estamos agendando {ScheduleMassagist}"
+                    }
+                ]
+            }
+        ]
+    }
 }

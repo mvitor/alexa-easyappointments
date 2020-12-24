@@ -6,11 +6,11 @@
         "listItems": [
             {
                 "primaryText": "Servicos",
-                "secondaryText": "Conheca nossos Servicos",
-                "tertiaryText": "Diga Conhecer Servicos",
+                "secondaryText": "Exibir Servicos",
+                "tertiaryText": "Diga Exibir Servicos",
                 "tertiaryTextPosition": "top",
                 "imageAlignment": "left",
-                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/massage.png",
+                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/noun_services_1546238.png",
                 "primaryAction": [
                     {
                         "type": "SetValue",
@@ -22,11 +22,28 @@
             },
             {
                 "primaryText": "Agendamento",
-                "secondaryText": "Agenda uma consulta agora mesmo",
+                "secondaryText": "Fazer Agendamento",
                 "tertiaryText": "Diga Fazer Agendamento",
                 "tertiaryTextPosition": "top",
                 "imageAlignment": "left",
-                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/noun_REIKI_2677052.png",
+                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/booking.png",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "cheeseList",
+                        "property": "headerTitle",
+                        "value": "${payload.imageListData.listItems[2].primaryText} is selected"
+                    }
+                ]
+            },
+
+            {
+                "primaryText": "Horario",
+                "secondaryText": "Horario de Funcionamento",
+                "tertiaryText": "Diga Exibir Horario de Funcionamento",
+                "tertiaryTextPosition": "top",
+                "imageAlignment": "left",
+                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/wereopen.png",
                 "primaryAction": [
                     {
                         "type": "SetValue",
@@ -37,38 +54,21 @@
                 ]
             },
             {
-                "primaryText": "Horario de Funcionamento",
-                "secondaryText": "Saiba nosso horario de funcionamento",
-                "tertiaryText": "Diga Horario de Funcionamento",
+                "primaryText": "Mensagem",
+                "secondaryText": "Deixar Mensagem",
+                "tertiaryText": "Diga Deixar Mensagem",
                 "tertiaryTextPosition": "top",
                 "imageAlignment": "left",
-                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/noun_acupuncture_2677049.png",
+                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/booking.png",
                 "primaryAction": [
                     {
                         "type": "SetValue",
                         "componentId": "cheeseList",
                         "property": "headerTitle",
-                        "value": "${payload.imageListData.listItems[2].primaryText} is selected"
-                    }
-                ]
-            },
-            {
-                "primaryText": "Recado",
-                "secondaryText": "Para Informacao ou Recado",
-                "tertiaryText": "Diga Deixar Recado",
-                "tertiaryTextPosition": "top",
-                "imageAlignment": "left",
-                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/noun_REIKI_2677052.png",
-                "primaryAction": [
-                    {
-                        "type": "SetValue",
-                        "componentId": "cheeseList",
-                        "property": "headerTitle",
-                        "value": "${payload.imageListData.listItems[2].primaryText} is selected"
+                        "value": "${payload.imageListData.listItems[1].primaryText} is selected"
                     }
                 ]
             }
-      
         ],
         "logoUrl": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/icon_cheese.png",
         "hintText": "Tente, \"Alexa, exibir detalhes Acumputura\""

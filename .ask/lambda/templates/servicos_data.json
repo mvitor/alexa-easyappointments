@@ -59,7 +59,7 @@
                 "tertiaryText": "Diga Exibir detalhes Reiki",
                 "tertiaryTextPosition": "top",
                 "imageAlignment": "left",
-                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/noun_REIKI_2677052.png",
+                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/noun_services_1546238.png",
                 "primaryAction": [
                     {
                         "type": "SetValue",

@@ -5,12 +5,12 @@
         "title": "Bem vindo a Nutriclinic",
         "listItems": [
             {
-                "primaryText": "Massagem",
-                "secondaryText": "A partir R$60,00",
-                "tertiaryText": "Diga Conhecer Massagem",
+                "primaryText": "Servicos",
+                "secondaryText": "Exibir Servicos",
+                "tertiaryText": "Diga Exibir Servicos",
                 "tertiaryTextPosition": "top",
                 "imageAlignment": "left",
-                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/massage.png",
+                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/noun_services_1546238.png",
                 "primaryAction": [
                     {
                         "type": "SetValue",
@@ -21,12 +21,29 @@
                 ]
             },
             {
-                "primaryText": "Reiki",
-                "secondaryText": "A partir R$80,00",
-                "tertiaryText": "Diga Conhecer Reiki",
+                "primaryText": "Agendamento",
+                "secondaryText": "Fazer Agendamento",
+                "tertiaryText": "Diga Fazer Agendamento",
                 "tertiaryTextPosition": "top",
                 "imageAlignment": "left",
-                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/noun_REIKI_2677052.png",
+                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/booking.png",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "cheeseList",
+                        "property": "headerTitle",
+                        "value": "${payload.imageListData.listItems[2].primaryText} is selected"
+                    }
+                ]
+            },
+
+            {
+                "primaryText": "Horario",
+                "secondaryText": "Horario de Funcionamento",
+                "tertiaryText": "Diga Exibir Horario de Funcionamento",
+                "tertiaryTextPosition": "top",
+                "imageAlignment": "left",
+                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/wereopen.png",
                 "primaryAction": [
                     {
                         "type": "SetValue",
@@ -37,50 +54,18 @@
                 ]
             },
             {
-                "primaryText": "Acupuntura",
-                "secondaryText": "A partir R$50,00",
-                "tertiaryText": "Diga Conhecer Acumputura",
+                "primaryText": "Mensagem",
+                "secondaryText": "Deixar Mensagem",
+                "tertiaryText": "Diga Deixar Mensagem",
                 "tertiaryTextPosition": "top",
                 "imageAlignment": "left",
-                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/noun_acupuncture_2677049.png",
+                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/booking.png",
                 "primaryAction": [
                     {
                         "type": "SetValue",
                         "componentId": "cheeseList",
                         "property": "headerTitle",
-                        "value": "${payload.imageListData.listItems[2].primaryText} is selected"
-                    }
-                ]
-            },
-            {
-                "primaryText": "Reiki",
-                "secondaryText": "A partir R$60,00",
-                "tertiaryText": "Diga Exibir detalhes Reiki",
-                "tertiaryTextPosition": "top",
-                "imageAlignment": "left",
-                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/noun_REIKI_2677052.png",
-                "primaryAction": [
-                    {
-                        "type": "SetValue",
-                        "componentId": "cheeseList",
-                        "property": "headerTitle",
-                        "value": "${payload.imageListData.listItems[2].primaryText} is selected"
-                    }
-                ]
-            },
-            {
-                "primaryText": "Reiki",
-                "secondaryText": "A partir R$60,00",
-                "tertiaryText": "Diga Conhecer Reiki",
-                "tertiaryTextPosition": "top",
-                "imageAlignment": "left",
-                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/noun_REIKI_2677052.png",
-                "primaryAction": [
-                    {
-                        "type": "SetValue",
-                        "componentId": "cheeseList",
-                        "property": "headerTitle",
-                        "value": "${payload.imageListData.listItems[2].primaryText} is selected"
+                        "value": "${payload.imageListData.listItems[1].primaryText} is selected"
                     }
                 ]
             }
