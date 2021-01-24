@@ -1,7 +1,7 @@
 {
     "interactionModel": {
         "languageModel": {
-            "invocationName": "abrir clinica",
+            "invocationName": "abrir clinica de relax",
             "intents": [
                 {
                     "name": "AMAZON.CancelIntent",
@@ -33,22 +33,24 @@
                             "name": "ServiceName",
                             "type": "SERVICOS",
                             "samples": [
-                                "Gostaria de agendar {ServiceName}"
+                                " {ServiceName}"
                             ]
+                        },
+                        {
+                            "name": "ScheduleDate",
+                            "type": "AMAZON.DATE"
                         },
                         {
                             "name": "ScheduleTime",
-                            "type": "AMAZON.DATE",
-                            "samples": [
-                                "Gostaria de agendar para {ScheduleTime}"
-                            ]
+                            "type": "AMAZON.TIME"
                         },
                         {
                             "name": "ScheduleMassagist",
-                            "type": "Massagistas",
-                            "samples": [
-                                "Sim {ScheduleMassagist}"
-                            ]
+                            "type": "Massagistas"
+                        },
+                        {
+                            "name": "CONFIRMED",
+                            "type": "boolean"
                         }
                     ],
                     "samples": [
@@ -58,9 +60,10 @@
                     ]
                 },
                 {
-                    "name": "SERVICOS",
+                    "name": "ShowServicesIntent",
                     "slots": [],
                     "samples": [
+                        "exibir serviços",
                         "CONHECER SERVIÇOS",
                         "VOCE PODE LISTAR OS SERVICOS ",
                         "QUAIS SÃO OS SERVIÇOS QUE VOCÊ OFERECE",
@@ -68,7 +71,7 @@
                     ]
                 },
                 {
-                    "name": "DETALHESSERVICOS",
+                    "name": "ServiceDetailsIntenet",
                     "slots": [
                         {
                             "name": "SERVICONAME",
@@ -76,21 +79,10 @@
                         }
                     ],
                     "samples": [
+                        "EXIBIR DETALHES {SERVICONAME}",
                         "EXIBIR DETALHES SERVIÇO {SERVICONAME}",
                         "DETALHES SERVIÇO {SERVICONAME}",
                         "LISTAR DETALHES SERVIÇO {SERVICONAME}"
-                    ]
-                },
-                {
-                    "name": "INICIARAGENDAMENTO",
-                    "slots": [
-                        {
-                            "name": "NOMESERVICO",
-                            "type": "AMAZON.SearchQuery"
-                        }
-                    ],
-                    "samples": [
-                        "Fazer Agendamento de {NOMESERVICO}"
                     ]
                 },
                 {
@@ -140,6 +132,13 @@
                         "GRAVAR RECADO",
                         "DEIXA RECADO",
                         "DEIXAR MENSAGEM"
+                    ]
+                },
+                {
+                    "name": "BookConfirmedIntenet",
+                    "slots": [],
+                    "samples": [
+                        "agendamento confirmado"
                     ]
                 }
             ],
@@ -214,13 +213,28 @@
                             }
                         }
                     ]
+                },
+                {
+                    "name": "boolean",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "nao"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "sim"
+                            }
+                        }
+                    ]
                 }
             ]
         },
         "dialog": {
             "intents": [
                 {
-                    "name": "DETALHESSERVICOS",
+                    "name": "ServiceDetailsIntenet",
                     "delegationStrategy": "ALWAYS",
                     "confirmationRequired": true,
                     "prompts": {
@@ -244,32 +258,32 @@
                         {
                             "name": "ServiceName",
                             "type": "SERVICOS",
-                            "confirmationRequired": true,
+                            "confirmationRequired": false,
                             "elicitationRequired": true,
                             "prompts": {
-                                "confirmation": "Confirm.Slot.142462458727.992710224035",
                                 "elicitation": "Elicit.Slot.142462458727.992710224035"
                             }
                         },
                         {
-                            "name": "ScheduleTime",
+                            "name": "ScheduleDate",
                             "type": "AMAZON.DATE",
-                            "confirmationRequired": true,
-                            "elicitationRequired": true,
-                            "prompts": {
-                                "confirmation": "Confirm.Slot.15348239233.527079072911",
-                                "elicitation": "Elicit.Slot.15348239233.527079072911"
-                            }
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        },
+                        {
+                            "name": "ScheduleTime",
+                            "type": "AMAZON.TIME",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
                         },
                         {
                             "name": "ScheduleMassagist",
                             "type": "Massagistas",
-                            "confirmationRequired": true,
-                            "elicitationRequired": true,
-                            "prompts": {
-                                "confirmation": "Confirm.Slot.15348239233.1225824183537",
-                                "elicitation": "Elicit.Slot.15348239233.1225824183537"
-                            }
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
                         }
                     ]
                 }
@@ -296,29 +310,11 @@
                 ]
             },
             {
-                "id": "Confirm.Slot.142462458727.992710224035",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "Ok. Voce quer agendar {ServiceName}"
-                    }
-                ]
-            },
-            {
                 "id": "Elicit.Slot.15348239233.527079072911",
                 "variations": [
                     {
                         "type": "PlainText",
-                        "value": "Para quando voce gostaria de agendar ?"
-                    }
-                ]
-            },
-            {
-                "id": "Confirm.Slot.15348239233.527079072911",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "Tudo bem. Você quer agendar para {ScheduleTime}"
+                        "value": "Para qual hora você gostaria de agendar o servisso ?"
                     }
                 ]
             },
@@ -336,7 +332,16 @@
                 "variations": [
                     {
                         "type": "PlainText",
-                        "value": "Ok. Estamos agendando {ScheduleMassagist}"
+                        "value": "Tudo bem. Prosseguindo com o agendamento do serviço horas com o massagista {ScheduleMassagist}.  Esta correto ?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.13655987594.83258536346",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Qual o dia para o agendamento ?"
                     }
                 ]
             }

@@ -2,14 +2,40 @@ module.exports = {
   translation: {
     SKILL_NAME: 'skill-secretaria-joana-nodejs',
     WELCOME_MESSAGE: "Bem vindo a Nutriclinic. "+
-    "Um espasso para o seu desenvolvimento e relaxamento. "+
-    "Meu nome eh Alexa, e espero poder te ajudar. ",
+    //"Um espasso para o seu desenvolvimento e relaxamento. "+
+    "Um espaço para o seu desenvolvimento e relaxamento. "+
+    "Meu nome é Alexa, e espero poder te ajudar. ",
+    //"Meu nome eh Alexa, e espero poder te ajudar. ",
     WELCOME_MESSAGE2:  
-    "Para conhecer nosso servissos diga CONHECER SERVISSOS. "+
+    "Para conhecer nosso serviços diga CONHECER SERVIÇOS. "+
+    //"Para conhecer nosso servissos diga CONHECER SERVISSOS. "+
     "Para agendamentos diga FAZER AGENDAMENTO. "+
     "Para deixar uma mensagem ou recado diga DEIXAR MENSAGEM. "+
-    "Para horahrio de atendimento diga HORAHRIO DE ATENDIMENTO. ",
-    WELCOME_PROMPT: '.  Qual opssao gostaria?',
+    //"Para horahrio de atendimento diga HORAHRIO DE ATENDIMENTO. ",
+    "Para horário de atendimento diga HORÁRIO DE ATENDIMENTO. ",
+    //WELCOME_PROMPT: '.  Qual opssao gostaria?',
+    WELCOME_PROMPT: '.  Qual opção gostaria?',
+    //SERVICES_MESSAGE: 'Certo! Nos oferecemos os seguinte servissos:',
+    SERVICES_MESSAGE: 'Certo! Nos oferecemos os seguinte serviços:',
+    SERVICES_MESSAGE1: 'Massagem',
+    SERVICES_MESSAGE2: 'Reiki',
+    SERVICES_MESSAGE3: 'Acumputura',
+    SERVICES_MESSAGE4: 'Para exibir mais detalhes sobre algum servisso, diga \"Exibir detalhes mais o nome do serviço\"',
+    //SERVICES_MESSAGE4: 'Para exibir mais detalhes sobre algum servisso, diga \"Exibir detalhes mais o nome do servisso\"',
+    SERVICES_MESSAGE5: 'Por exemplo, para saber mais detalhes sobre a massagem, diga \"Exibir detalhes Massagem\"',
+    SERVICES_MESSAGE6: 'Ou para agendamentos, diga \"Fazer Agendamento Massagem\"',
+    SERVICE1_MESSAGE1: 'Anda estressado com a rotina do dia a dia ? ',
+    SERVICE1_MESSAGE2: 'Descontraia com uma massagem de relaxamento! ',
+    SERVICE1_MESSAGE3: 'Na lista de serviços oferecidos estão também a massagem terapêutica / desportiva / pedras quentes / shiatsu / tailandesa / californiana / drenagem linfática. Contacte!',
+    //SERVICE1_MESSAGE3: 'Na lista de servissos oferecidos estao tambem a massagem terapeutica/ desportiva / pedras quentes / shiatsu / tailandesa / californiana / drenagem linfatica. Contacte!',
+    SERVICE1_MESSAGE4: 'Para fazer um agendamento diga agendar massagem terapêutica',
+   // SERVICE1_MESSAGE4: 'Para fazer um agendamento diga agendar massagem terapeutica',
+    SERVICE_PROVIDER_MESSAGE3: 'Ok. Estamos iniciando o agendamento da',
+    SERVICE_SCHEDULE_MESSAGE1: 'Ok. Estamos iniciando o agendamento da Massagem',
+    SERVICE_SCHEDULE_MESSAGE2: 'Nos contamos com os melhores profissionais',
+    SERVICE_SCHEDULE_MESSAGE3: 'Qual nome do massagista você gostaria de escolher',
+    //SERVICE_SCHEDULE_MESSAGE3: 'Qual nome do massagista voce gostaria de escolher',
+    SERVICE1_CONFIRMED: 'Agendamento realizado com sucesso',
     HELP: [
       'I can help you with the route from one station to another. Just say your Origin station and your destination station to get started'
     ],

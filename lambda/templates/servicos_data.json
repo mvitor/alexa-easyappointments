@@ -27,38 +27,6 @@
                 "tertiaryText": "Diga Conhecer Reiki",
                 "tertiaryTextPosition": "top",
                 "imageAlignment": "left",
-                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/noun_REIKI_2677052.png",
-                "primaryAction": [
-                    {
-                        "type": "SetValue",
-                        "componentId": "cheeseList",
-                        "property": "headerTitle",
-                        "value": "${payload.imageListData.listItems[2].primaryText} is selected"
-                    }
-                ]
-            },
-            {
-                "primaryText": "Acupuntura",
-                "secondaryText": "A partir R$50,00",
-                "tertiaryText": "Diga Conhecer Acumputura",
-                "tertiaryTextPosition": "top",
-                "imageAlignment": "left",
-                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/noun_acupuncture_2677049.png",
-                "primaryAction": [
-                    {
-                        "type": "SetValue",
-                        "componentId": "cheeseList",
-                        "property": "headerTitle",
-                        "value": "${payload.imageListData.listItems[2].primaryText} is selected"
-                    }
-                ]
-            },
-            {
-                "primaryText": "Reiki",
-                "secondaryText": "A partir R$60,00",
-                "tertiaryText": "Diga Exibir detalhes Reiki",
-                "tertiaryTextPosition": "top",
-                "imageAlignment": "left",
                 "imageSource": "https://undercontrol.blob.core.windows.net/alexa/noun_services_1546238.png",
                 "primaryAction": [
                     {
@@ -70,12 +38,12 @@
                 ]
             },
             {
-                "primaryText": "Reiki",
+                "primaryText": "Acupuntura",
                 "secondaryText": "A partir R$60,00",
-                "tertiaryText": "Diga Conhecer Reiki",
+                "tertiaryText": "Diga Conhecer Acupuntura",
                 "tertiaryTextPosition": "top",
                 "imageAlignment": "left",
-                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/noun_REIKI_2677052.png",
+                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/noun_acupuncture.png",
                 "primaryAction": [
                     {
                         "type": "SetValue",
@@ -86,7 +54,7 @@
                 ]
             }
         ],
-        "logoUrl": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/icon_cheese.png",
-        "hintText": "Try, \"Alexa, what is today's cheesy joke?\""
+        "logoUrl": "http://www.clinicasagradocorazon.com.co/wp-content/uploads/2015/10/ico_politica_humanizada.png",
+        "hintText": "Tente dizer, \"Alexa, exibir detalhes massagem?\" ou \n \"Alexa, fazer agendamento massagem?\""
     }
 }

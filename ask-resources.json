@@ -11,9 +11,12 @@
         }
       },
       "skillInfrastructure": {
+        "type": "@ask-cli/cfn-deployer",
         "userConfig": {
           "runtime": "nodejs10.x",
-          "handler": "index.handler"
+          "handler": "index.handler",
+          "templatePath": "./infrastructure/cfn-deployer/skill-stack.yaml",
+          "awsRegion": "us-east-1"
         }
       }
     }

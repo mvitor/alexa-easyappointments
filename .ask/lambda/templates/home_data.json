@@ -43,7 +43,7 @@
                 "tertiaryText": "Diga Exibir Horario de Funcionamento",
                 "tertiaryTextPosition": "top",
                 "imageAlignment": "left",
-                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/wereopen.png",
+                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/wereopen1.png",
                 "primaryAction": [
                     {
                         "type": "SetValue",
@@ -70,7 +70,7 @@
                 ]
             }
         ],
-        "logoUrl": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/icon_cheese.png",
-        "hintText": "Tente, \"Alexa, exibir detalhes Acumputura\""
+        "logoUrl": "https://undercontrol.blob.core.windows.net/alexa/ico.png",
+        "hintText": "Tente, \"Alexa, exibir Servicos\""
     }
 }

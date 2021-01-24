@@ -29,7 +29,7 @@
                 "backgroundImageSource": "${payload.imageListData.backgroundImage.sources[0].url}",
                 "backgroundBlur": false,
                 "backgroundColorOverlay": true,
-                "imageAspectRatio": "square",
+                "imageAspectRatio": "round",
                 "imageMetadataPrimacy": true,
                 "imageScale": "best-fill",
                 "listItems": "${payload.imageListData.listItems}",
