@@ -54,7 +54,7 @@
                 ]
             }
         ],
-        "logoUrl": "http://www.clinicasagradocorazon.com.co/wp-content/uploads/2015/10/ico_politica_humanizada.png",
+        "logoUrl": "https://undercontrol.blob.core.windows.net/alexa/ico.png",
         "hintText": "Tente dizer, \"Alexa, exibir detalhes massagem?\" ou \n \"Alexa, fazer agendamento massagem?\""
     }
 }

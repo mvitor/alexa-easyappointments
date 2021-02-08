@@ -57,7 +57,8 @@ const display = require('./templates/display.json');
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
-        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
+        //return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
+        return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
     },
     handle(handlerInput) {
         const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
@@ -650,21 +651,21 @@ const ShowServicesHandler = {
                     datasources: services_datasource
         
                 })
-                .addDirective({
-                    type : 'Alexa.Presentation.APL.ExecuteCommands',
-                    token: "servicespage",
-                    commands: [
-                        {
-                            type: "Parallel",
-                            commands: [
-                                {
-                                    type: "Idle",
-                                    delay: 60000
-                                }],
-                        }
-                    ]
+                // .addDirective({
+                //     type : 'Alexa.Presentation.APL.ExecuteCommands',
+                //     token: "servicespage",
+                //     commands: [
+                //         {
+                //             type: "Parallel",
+                //             commands: [
+                //                 {
+                //                     type: "Idle",
+                //                     delay: 60000
+                //                 }],
+                //         }
+                //     ]
                     
-                })
+                // })
                 .getResponse();
         }
         else {
@@ -683,13 +684,23 @@ const BookConfirmedHandler = {
     },
     handle(handlerInput) {
         const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+        const { intent } = handlerInput.requestEnvelope.request;
+        const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
         if (supportsAPL(handlerInput)) {
             const service_display = require('./templates/schedule_confirmed.json');
             const service_datasource = require('./templates/schedule_confirmed_data.json');
-            const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+            const name = intent.slots.nome.value
             var speech = new AmazonSpeech();
             speech.say(requestAttributes.t('SERVICE1_CONFIRMED'))
+            speech.say("Para "+name)
             .pause('1s')
+            speech.say(requestAttributes.t('SERVICE2_CONFIRMED'))
+            .pause('500ms')
+            speech.say(requestAttributes.t('SERVICE3_CONFIRMED'))
+            .pause('500ms')
+            speech.say(requestAttributes.t('SERVICE4_CONFIRMED'))
+            .pause('1s')
+            speech.say(requestAttributes.t('SERVICE5_CONFIRMED'))
             return handlerInput.responseBuilder
             .speak(speech.ssml())
             .reprompt(requestAttributes.t('SERVICE1_CONFIRMED'))
@@ -704,6 +715,15 @@ const BookConfirmedHandler = {
         }
     }
 }
+const LaunchHomeHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'LaunchHomeIntent';
+    },
+    handle(handlerInput) {
+        return LaunchRequestHandler.handle(handlerInput);
+    }
+};
 const ServiceDetailsHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -772,49 +792,97 @@ const ScheduleStartHandler = {
             .pause('500ms')
         }
         // We do have all slots then ask to confirm book it
-        else if (intent.slots.ServiceName.value && intent.slots.ScheduleMassagist.value && intent.slots.ScheduleDate.value && intent.slots.ScheduleTime.value && intent.slots.CONFIRMED.value) {
-                speech.say("Ok")
-                .pause('200ms')
-                speech.say("Agendamento realizado com successo")
-                .pause('50ms')
-                speech.say("Com "+intent.slots.ScheduleMassagist.value)
-                .pause('50ms')
-                speech.say("Para o dia "+intent.slots.ScheduleDate.value)
-                .pause('50ms')
-                speech.say("Para o horario "+intent.slots.ScheduleTime.value)
-                .pause('50ms')
-                slotName = ''
-                //alexa.emit(":delegate", 'BookConfirmed');
-                return BookConfirmedHandler.handle(handlerInput);
-                //service_display = require('./templates/service_book_confirm.json');
-                //service_datasource = require('./templates/service_book_confirm_data.json');
-        }
-        // We do have all slots then ask to confirm book it
-        else if (intent.slots.ServiceName.value && intent.slots.ScheduleMassagist.value && intent.slots.ScheduleDate.value && intent.slots.ScheduleTime.value) {
+        else if (intent.slots.ServiceName.value && intent.slots.ScheduleMassagist.value && intent.slots.ScheduleDate.value && intent.slots.ScheduleTime.value && intent.slots.CONFIRMED.value && intent.slots.telefone.value && intent.slots.nome.value) {
             speech.say("Ok")
             .pause('200ms')
-            speech.say("Estaremos agendando o servisso"+intent.slots.ServiceName.value)
+            speech.say("Agendamento realizado com successo")
             .pause('50ms')
             speech.say("Com "+intent.slots.ScheduleMassagist.value)
             .pause('50ms')
-            speech.say("Para o dia "+intent.slots.ScheduleDate.value)
+            speech.say("Para dia ")
+            var AmazonDateParser = require('amazon-date-parser');
+            intent.slots.ScheduleDate.value = new AmazonDateParser('2021-02-11');                 
+            speech.sayAs({
+                word: intent.slots.ScheduleDate.value,
+                interpret: "date",
+                format: "dmy"
+            })
+            //speech.sayAs({ word: dateArray[0], format: "mdy", interpret: "date" });
             .pause('50ms')
-            speech.say("Para o horario "+intent.slots.ScheduleTime.value)
+            speech.say("Para o horário "+intent.slots.ScheduleTime.value)
             .pause('50ms')
-            speech.say("Voce confirma o agendamento ?")
+            slotName = ''
+            //alexa.emit(":delegate", 'BookConfirmed');
+            const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+            sessionAttributes.getName = true;
+            handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
+            return BookConfirmedHandler.handle(handlerInput);
+            //service_display = require('./templates/service_book_confirm.json');
+            //service_datasource = require('./templates/service_book_confirm_data.json');
+        }
+         // COnfirmed book - let's ask phone
+         else if (intent.slots.ServiceName.value && intent.slots.ScheduleMassagist.value && intent.slots.ScheduleDate.value && intent.slots.ScheduleTime.value && intent.slots.CONFIRMED.value && intent.slots.nome.value) {
+            service_display = require('./templates/schedule_confirmed.json');
+            service_datasource = require('./templates/schedule_confirmed_data.json');
+            speech.say("Agora necessito saber seu telefone, com DDD")
+            slotName = 'telefone'
+            prompt_msg = 'Por favor me diga seu telefone'
+            //sessionAttributes.getPhone = false;
+            //handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
+        } 
+        // COnfirmed book - let's ask name
+        else if (intent.slots.ServiceName.value && intent.slots.ScheduleMassagist.value && intent.slots.ScheduleDate.value && intent.slots.ScheduleTime.value && intent.slots.CONFIRMED.value) {
+            prompt_msg = ''
+            var speech = new AmazonSpeech();
+            service_display = require('./templates/schedule_confirmed.json');
+            service_datasource = require('./templates/schedule_confirmed_data.json');
+
+            speech.say("Para finalizar o agendamento, necessito tomar nota de seu nome e telefone")
+            .pause('500ms')
+            speech.say("Por favor me diga inicialmente o seu nome completo")
+            slotName = 'nome'
+            prompt_msg = 'Por favor me diga inicialmente o seu nome completo'
+            //sessionAttributes.getName = false;
+            //sessionAttributes.getPhone = true;
+            //handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
+        }
+
+
+        // We do have all slots then ask to confirm book it
+        else if (intent.slots.ServiceName.value && intent.slots.ScheduleMassagist.value && intent.slots.ScheduleDate.value && intent.slots.ScheduleTime.value) {
+            speech.say("Ok!")
+            .pause('200ms')
+            speech.say("Estaremos agendando o serviço "+intent.slots.ServiceName.value)
+            .pause('50ms')
+            speech.say("Com o profissional "+intent.slots.ScheduleMassagist.value)
+            .pause('50ms')
+            speech.say("Para as "+intent.slots.ScheduleTime.value+" horas")
+            speech.say("Do dia ")
+            //var AmazonDateParser = require('amazon-date-parser');
+            //intent.slots.ScheduleDate.value = 
+            //var date = new AmazonDateParser('2021-02-11');                 
+            var date = '02-11';                 
+            speech.sayAs({
+                //word: intent.slots.ScheduleDate.value,
+                word: date,
+                interpret: "date",
+                format: "md"
+            })            
+            .pause('50ms')
+            speech.say("Você confirma o agendamento ?")
             .pause('50ms')
             slotName = 'CONFIRMED'
             service_display = require('./templates/service_book_confirm.json');
             service_datasource = require('./templates/service_book_confirm_data.json');
         } 
         else if (intent.slots.ScheduleMassagist.value && intent.slots.ScheduleDate.value) {
-            speech.say("Qual horario voce gostaria de agendar ?")
+            speech.say("Para qual horário você gostaria de agendar a massagem ?")
             slotName = 'ScheduleTime'
             service_display = require('./templates/service_book_time.json');
             service_datasource = require('./templates/service_book_time_data.json');
         }
         else if (intent.slots.ScheduleMassagist.value) {
-            speech.say("Qual Dia voce gostaria de agendar ?")
+            speech.say("Para qual dia você gostaria de agendar a massagem?")
             slotName = 'ScheduleDate'
             service_display = require('./templates/service_book_date.json');
             service_datasource = require('./templates/service_book_date_data.json')
@@ -822,8 +890,7 @@ const ScheduleStartHandler = {
         }
         if (supportsAPL(handlerInput)) {
             const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
-            const state = handlerInput.requestEnvelope.request.dialogState;
-            console.log(state);
+            //const state = handlerInput.requestEnvelope.request.dialogState;
 
             return handlerInput.responseBuilder
             .speak(speech.ssml())
@@ -972,6 +1039,7 @@ const LocalizationInterceptor = {
 exports.handler = Alexa.SkillBuilders.custom()
     .addRequestHandlers(
         LaunchRequestHandler,
+        LaunchHomeHandler,
         ShowServicesHandler,
         BookConfirmedHandler,
         ServiceDetailsHandler,

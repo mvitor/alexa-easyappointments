@@ -1,7 +1,7 @@
 {
     "interactionModel": {
         "languageModel": {
-            "invocationName": "abrir clinica de relax",
+            "invocationName": "abrir clínica de massagem nutriclinic",
             "intents": [
                 {
                     "name": "AMAZON.CancelIntent",
@@ -51,6 +51,14 @@
                         {
                             "name": "CONFIRMED",
                             "type": "boolean"
+                        },
+                        {
+                            "name": "nome",
+                            "type": "AMAZON.FirstName"
+                        },
+                        {
+                            "name": "telefone",
+                            "type": "AMAZON.PhoneNumber"
                         }
                     ],
                     "samples": [
@@ -58,6 +66,23 @@
                         "FAZER AGENDAMENTO {ServiceName}",
                         "AGENDAMENTO {ServiceName}"
                     ]
+                },
+                {
+                    "name": "LaunchHomeIntent",
+                    "slots": [],
+                    "samples": [
+                        "Página Principal",
+                        "Exibir página principal",
+                        "Exibir menu principal",
+                        "Voltar menu principal",
+                        "Voltar página principal"
+                    ]
+                },
+                {
+                    "name": "LaunchRequest",
+                    "slots": [],
+                    "samples": [
+                   ]
                 },
                 {
                     "name": "ShowServicesIntent",
@@ -136,9 +161,35 @@
                 },
                 {
                     "name": "BookConfirmedIntenet",
-                    "slots": [],
+                    "slots": [
+                        {
+                            "name": "nomedois",
+                            "type": "AMAZON.FirstName"
+                        },
+                        {
+                            "name": "telefone",
+                            "type": "AMAZON.PhoneNumber"
+                        }
+                    ],
                     "samples": [
                         "agendamento confirmado"
+                    ]
+                },
+                {
+                    "name": "ScheduleUserDetails",
+                    "slots": [
+                        {
+                            "name": "nome",
+                            "type": "AMAZON.FirstName"
+                        },
+                        {
+                            "name": "telefone",
+                            "type": "AMAZON.PhoneNumber"
+                        }
+                    ],
+                    "samples": [
+                        "informar nome agendamento",
+                        "informar nome "
                     ]
                 }
             ],
@@ -236,10 +287,8 @@
                 {
                     "name": "ServiceDetailsIntenet",
                     "delegationStrategy": "ALWAYS",
-                    "confirmationRequired": true,
-                    "prompts": {
-                        "confirmation": "Confirm.Intent.85189728447"
-                    },
+                    "confirmationRequired": false,
+                    "prompts": {},
                     "slots": [
                         {
                             "name": "SERVICONAME",

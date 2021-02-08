@@ -14,6 +14,7 @@
     "aws-sdk": "^2.326.0",
     "i18next": "^19.8.4",
     "i18next-sprintf-postprocessor": "^0.2.2",
-    "ssml-builder": "^0.4.3"
+    "ssml-builder": "^0.4.3",
+    "amazon-date-parser": "^0.3.0"
   }
 }

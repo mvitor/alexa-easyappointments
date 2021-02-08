@@ -136,7 +136,7 @@
                     ]
                 }
             ],
-            "logoUrl": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/icon_cheese.png",
+            "logoUrl": "https://undercontrol.blob.core.windows.net/alexa/ico.png",
             "hintText": "Try, \"Alexa, what is today's cheesy joke?\""
         }
     }
