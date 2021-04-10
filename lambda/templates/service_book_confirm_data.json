@@ -1,0 +1,35 @@
+{
+    "longTextTemplateData": {
+        "type": "object",
+        "objectId": "longTextSample",
+        "properties": {
+            "backgroundImage": {
+                "contentDescription": null,
+                "smallSourceUrl": null,
+                "largeSourceUrl": null,
+                "sources": [
+                    {
+                        "url": "https://undercontrol.blob.core.windows.net/alexa/time.jpg",
+                        "size": "small",
+                        "widthPixels": 0,
+                        "heightPixels": 0
+                    },
+                    {
+                        "url": "https://undercontrol.blob.core.windows.net/alexa/time.jpg",
+                        "size": "large",
+                        "widthPixels": 0,
+                        "heightPixels": 0
+                    }
+                ]
+            },
+            "title": "Confirmação de agendamento",
+            "textContent": {
+                "primaryText": {
+                    "type": "PlainText",
+                    "text": "Dia: 11/02/2021<br>Hora: 11 horas<br>Profissional: Joao Célio<br><br>Você confirma o agendamento ?"
+                }
+            },
+            "logoUrl": "https://undercontrol.blob.core.windows.net/alexa/ico.png"
+        }
+    }
+}

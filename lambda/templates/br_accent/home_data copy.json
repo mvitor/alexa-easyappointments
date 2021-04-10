@@ -1,0 +1,76 @@
+{
+    "imageListData": {
+        "type": "object",
+        "objectId": "imageListSample",
+        "title": "Bem vindo a Nutriclinic",
+        "listItems": [
+            {
+                "primaryText": "Serviços",
+                "secondaryText": "Exibir Serviços",
+                "tertiaryText": "Diga Exibir Serviços",
+                "tertiaryTextPosition": "top",
+                "imageAlignment": "left",
+                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/noun_services_1546238.png",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "menuList",
+                        "property": "headerTitle",
+                        "value": "${payload.imageListData.listItems[2].primaryText} is selected"
+                    }
+                ]
+            },
+            {
+                "primaryText": "Agendamento",
+                "secondaryText": "Fazer Agendamento",
+                "tertiaryText": "Diga Fazer Agendamento",
+                "tertiaryTextPosition": "top",
+                "imageAlignment": "left",
+                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/booking.png",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "cheeseList",
+                        "property": "headerTitle",
+                        "value": "${payload.imageListData.listItems[2].primaryText} is selected"
+                    }
+                ]
+            },
+
+            {
+                "primaryText": "Horário",
+                "secondaryText": "Horário de Funcionamento",
+                "tertiaryText": "Diga Exibir Horario de Funcionamento",
+                "tertiaryTextPosition": "top",
+                "imageAlignment": "left",
+                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/wereopen1.png",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "cheeseList",
+                        "property": "headerTitle",
+                        "value": "${payload.imageListData.listItems[2].primaryText} is selected"
+                    }
+                ]
+            },
+            {
+                "primaryText": "Mensagem",
+                "secondaryText": "Deixar Mensagem",
+                "tertiaryText": "Diga Deixar Mensagem",
+                "tertiaryTextPosition": "top",
+                "imageAlignment": "left",
+                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/booking.png",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "cheeseList",
+                        "property": "headerTitle",
+                        "value": "${payload.imageListData.listItems[1].primaryText} is selected"
+                    }
+                ]
+            }
+        ],
+        "logoUrl": "https://undercontrol.blob.core.windows.net/alexa/ico.png",
+        "hintText": "Tente, \"Alexa, exibir Serviços\""
+    }
+}

@@ -1,0 +1,143 @@
+{
+    "type": "APL",
+    "version": "1.4",
+    "theme": "dark",
+    "import": [
+        {
+            "name": "alexa-layouts",
+            "version": "1.2.0"
+        }
+    ],
+    "mainTemplate": {
+        "parameters": [
+            "imageListData"
+        ],
+        "items": [
+            {
+                "type": "AlexaImageList",
+                "id": "cheeseList",
+                "headerTitle": "${imageListData.title}",
+                "headerBackButton": false,
+                "headerAttributionImage": "${imageListData.logoUrl}",
+                "backgroundImageSource": "${imageListData.backgroundImage.sources[0].url}",
+                "backgroundBlur": false,
+                "backgroundColorOverlay": true,
+                "imageAspectRatio": "square",
+                "imageMetadataPrimacy": true,
+                "imageScale": "best-fill",
+                "listItems": "${imageListData.listItems}",
+                "hintText": "${imageListData.hintText}"
+            }
+        ]
+    },
+    "datasources": {
+        "imageListData": {
+            "type": "object",
+            "objectId": "imageListSample",
+            "backgroundImage": {
+                "contentDescription": null,
+                "smallSourceUrl": null,
+                "largeSourceUrl": null,
+                "sources": [
+                    {
+                        "url": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/bg_cheese_1.jpg",
+                        "size": "small",
+                        "widthPixels": 0,
+                        "heightPixels": 0
+                    },
+                    {
+                        "url": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/bg_cheese_1.jpg",
+                        "size": "large",
+                        "widthPixels": 0,
+                        "heightPixels": 0
+                    }
+                ]
+            },
+            "title": "Bem vindo a Clinica do Marcio",
+            "listItems": [
+                {
+                    "primaryText": "Reiki",
+                    "secondaryText": "A partir R$60,00",
+                    "tertiaryText": "Diga Conhecer Reiki",
+                    "tertiaryTextPosition": "top",
+                    "imageAlignment": "left",
+                    "imageSource": "https://undercontrol.blob.core.windows.net/alexa/massage.png",
+                    "primaryAction": [
+                        {
+                            "type": "SetValue",
+                            "componentId": "cheeseList",
+                            "property": "headerTitle",
+                            "value": "${payload.imageListData.listItems[2].primaryText} is selected"
+                        }
+                    ]
+                },
+                {
+                    "primaryText": "Reiki",
+                    "secondaryText": "A partir R$60,00",
+                    "tertiaryText": "Diga Conhecer Reiki",
+                    "tertiaryTextPosition": "top",
+                    "imageAlignment": "left",
+                    "imageSource": "https://undercontrol.blob.core.windows.net/alexa/noun_REIKI_2677052.png",
+                    "primaryAction": [
+                        {
+                            "type": "SetValue",
+                            "componentId": "cheeseList",
+                            "property": "headerTitle",
+                            "value": "${payload.imageListData.listItems[2].primaryText} is selected"
+                        }
+                    ]
+                },
+                {
+                    "primaryText": "Reiki",
+                    "secondaryText": "A partir R$60,00",
+                    "tertiaryText": "Diga Conhecer Reiki",
+                    "tertiaryTextPosition": "top",
+                    "imageAlignment": "left",
+                    "imageSource": "https://undercontrol.blob.core.windows.net/alexa/noun_REIKI_2677052.png",
+                    "primaryAction": [
+                        {
+                            "type": "SetValue",
+                            "componentId": "cheeseList",
+                            "property": "headerTitle",
+                            "value": "${payload.imageListData.listItems[2].primaryText} is selected"
+                        }
+                    ]
+                },
+                {
+                    "primaryText": "Reiki",
+                    "secondaryText": "A partir R$60,00",
+                    "tertiaryText": "Diga Exibir detalhes Reiki",
+                    "tertiaryTextPosition": "top",
+                    "imageAlignment": "left",
+                    "imageSource": "https://undercontrol.blob.core.windows.net/alexa/noun_REIKI_2677052.png",
+                    "primaryAction": [
+                        {
+                            "type": "SetValue",
+                            "componentId": "cheeseList",
+                            "property": "headerTitle",
+                            "value": "${payload.imageListData.listItems[2].primaryText} is selected"
+                        }
+                    ]
+                },
+                {
+                    "primaryText": "Reiki",
+                    "secondaryText": "A partir R$60,00",
+                    "tertiaryText": "Diga Conhecer Reiki",
+                    "tertiaryTextPosition": "top",
+                    "imageAlignment": "left",
+                    "imageSource": "https://undercontrol.blob.core.windows.net/alexa/noun_REIKI_2677052.png",
+                    "primaryAction": [
+                        {
+                            "type": "SetValue",
+                            "componentId": "cheeseList",
+                            "property": "headerTitle",
+                            "value": "${payload.imageListData.listItems[2].primaryText} is selected"
+                        }
+                    ]
+                }
+            ],
+            "logoUrl": "https://undercontrol.blob.core.windows.net/alexa/ico.png",
+            "hintText": "Try, \"Alexa, what is today's cheesy joke?\""
+        }
+    }
+}

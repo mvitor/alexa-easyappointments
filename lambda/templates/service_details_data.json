@@ -1,0 +1,60 @@
+{
+    "imageListData": {
+        "type": "object",
+        "objectId": "imageListSample",
+
+        "title": "Bem vindo a Nutriclinic",
+        "listItems": [
+            {
+                "primaryText": "Massagem",
+                "secondaryText": "A partir R$60,00",
+                "tertiaryText": "Diga Conhecer Massagem",
+                "tertiaryTextPosition": "top",
+                "imageAlignment": "left",
+                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/massage.png",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "menuList",
+                        "property": "headerTitle",
+                        "value": "${payload.imageListData.listItems[2].primaryText} is selected"
+                    }
+                ]
+            },
+            {
+                "primaryText": "Reiki",
+                "secondaryText": "A partir R$80,00",
+                "tertiaryText": "Diga Conhecer Reiki",
+                "tertiaryTextPosition": "top",
+                "imageAlignment": "left",
+                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/noun_services_1546238.png",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "cheeseList",
+                        "property": "headerTitle",
+                        "value": "${payload.imageListData.listItems[2].primaryText} is selected"
+                    }
+                ]
+            },
+            {
+                "primaryText": "Acupuntura",
+                "secondaryText": "A partir R$50,00",
+                "tertiaryText": "Diga Conhecer Acumputura",
+                "tertiaryTextPosition": "top",
+                "imageAlignment": "left",
+                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/noun_acupuncture.png",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "cheeseList",
+                        "property": "headerTitle",
+                        "value": "${payload.imageListData.listItems[2].primaryText} is selected"
+                    }
+                ]
+            }
+        ],
+        "logoUrl": "https://undercontrol.blob.core.windows.net/alexa/ico.png",
+        "hintText": "Tente dizer, \"Alexa, exibir mais massagem?\" ou \n \"Alexa, agendar servicos?\""
+    }
+}

@@ -1,0 +1,37 @@
+{
+    "longTextTemplateData": {
+        "type": "object",
+        "objectId": "longTextSample",
+        "properties": {
+            "backgroundImage": {
+                "contentDescription": null,
+                "smallSourceUrl": null,
+                "largeSourceUrl": null,
+                "sources": [
+                    {
+                        "url": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/bg_cheese_2.jpg",
+                        "size": "small",
+                        "widthPixels": 0,
+                        "heightPixels": 0
+                    },
+                    {
+                        "url": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/bg_cheese_2.jpg",
+                        "size": "large",
+                        "widthPixels": 0,
+                        "heightPixels": 0
+                    }
+                ]
+            },
+            "title": "Agendamento confirmado",
+            "textContent": {
+                "primaryText": {
+                    "type": "PlainText",
+                    "text": "Dia: 11/02/2021<br>Hora: 11 horas<br>Profissional: Joao Célio<br><br> Tente dizer, \"Alexa, voltar menu inicial\" ou \n \"Alexa, sair\" caso já tenha terminado."
+                }
+            },
+                  "hintText": "Tente dizer, \"Alexa, exibir detalhes massagem?\" ou \n \"Alexa, fazer agendamento massagem?\"",
+            "logoUrl": "https://undercontrol.blob.core.windows.net/alexa/ico.png"
+        }
+
+    }
+}

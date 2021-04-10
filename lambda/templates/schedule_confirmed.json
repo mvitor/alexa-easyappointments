@@ -1,0 +1,93 @@
+{
+    "type": "APL",
+    "version": "1.4",
+    "settings": {},
+    "import": [
+        {
+            "name": "alexa-layouts",
+            "version": "1.2.0"
+        }
+    ],
+    "graphics": {
+  "gradientBackground": {
+    "type": "AVG",
+    "version": "1.2",
+    "height": 100,
+    "width": 100,
+    "scaleTypeWidth": "stretch",
+    "scaleTypeHeight": "stretch",
+    "resources": {
+      "gradients": {
+        "grayGradient": {
+          "inputRange": [
+            0,
+            1
+          ],
+          "colorRange": [
+            "#2B3A4D",
+            "#0B0F13"
+          ],
+          "type": "radial",
+          "units": "boundingBox",
+          "centerX": 1,
+          "centerY": 0,
+          "radius": 1.6
+        }
+      }
+    },
+    "items": [
+                {
+          "type": "VectorGraphic",
+          "source": "gradientBackground",
+          "width": "100%",
+          "height": "100%",
+          "scale": "fill",
+          "position": "absolute"
+        }, 
+      {
+        "type": "path",
+        "pathData": "M0,0 L${width},0 L${width},${height} L0,${height}",
+        "fill": "@grayGradient",
+        "fillTransform": "scale(0.5)"
+      }
+    ]
+  }
+},
+    "resources": [],
+    "styles": {},
+    "onMount": [],
+    "graphics": {},
+    "commands": {},
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "items": [
+            {
+                "type": "AlexaDetail",
+                "detailType": "recipe",
+                "detailImageAlignment": "left",
+                "headerTitle": "${payload.detailImageLeftData.title}",
+                "headerBackButton": true,
+                "headerAttributionImage": "${payload.detailImageLeftData.logoUrl}",
+                "imageBlurredBackground": true,
+                "imageScale": "best-fit",
+                "imageAspectRatio": "square",
+                "imageSource": "${payload.detailImageLeftData.image.sources[0].url}",
+                "imageCaption": "${payload.detailImageLeftData.image.contentDescription}",
+                "primaryText": "${payload.detailImageLeftData.textContent.primaryText.text}",
+                "secondaryText": "${payload.detailImageLeftData.textContent.secondaryText.text}",
+                "bodyText": "${payload.detailImageLeftData.textContent.content.text}",
+                "button1Text": "${payload.detailImageLeftData.buttons[0].text}",
+                "button2Text": "${payload.detailImageLeftData.buttons[1].text}",
+                "button1PrimaryAction": "${payload.detailImageLeftData.buttons[0].action}",
+                "button2PrimaryAction": "${payload.detailImageLeftData.buttons[1].action}",
+                "ingredientsText": "Dia 11/02 as 11:00 hrs",
+                "ingredientListItems": "${payload.detailImageLeftData.ingredients}",
+                "backgroundColorOverlay": true,
+                "id": "cheeseDetail"
+            }
+        ]
+    },
+    "layouts": {}
+}
