@@ -239,6 +239,7 @@
                     "name": "Massagistas",
                     "values": [
                         {
+                            "id": "5",
                             "name": {
                                 "value": "Isabel Fernandes",
                                 "synonyms": [
@@ -247,19 +248,22 @@
                             }
                         },
                         {
+                            "id": "2",
                             "name": {
-                                "value": "Raquel Dos Santos",
+                                "value": "Jóia Maria",
                                 "synonyms": [
-                                    "Raquel"
+                                    "Joia",
+                                    "Maria"
                                 ]
                             }
                         },
                         {
-                            "id": "1",
+                            "id": "4",
                             "name": {
-                                "value": "João Carlos",
+                                "value": "João Célio",
                                 "synonyms": [
-                                    "João"
+                                    "João",
+                                    "Célio"
                                 ]
                             }
                         }
