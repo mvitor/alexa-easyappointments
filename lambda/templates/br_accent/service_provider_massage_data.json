@@ -1,0 +1,25 @@
+{
+  
+  "itemList": {
+    "logoUrl": "https://undercontrol.blob.core.windows.net/alexa/ico.png",
+    "items": [
+      {
+        "itemType": "subHeading",
+        "primaryText": "Diga o nome do massagista de sua preferencia"
+      },
+      {
+        "itemType": "massagista",
+        "primaryText": "Joao Celio - @joaocelioinsta",
+        "secondaryText": "<b>Especialidades:</b> Shiatsu, Esportiva e Terapeutica",
+        "imageSource": "https://bp.imguol.com/2014/03/21/joao-kleber-no-bate-papo-uol-1395440143911_615x470.jpg"
+      },
+      {
+        "itemType": "massagista",
+        "primaryText": "Joia Maria - @joiamariaoficial",
+        "secondaryText": "<b>Especialidades:</b> Tailandesa, Esportiva e Terapeutica",
+        "imageSource": "https://img.vixdata.io/pd/webp-large/pt/sites/default/files/bdm/field/image/gloria-maria-apresentadora.jpg"
+      }
+        ]
+        
+  }
+}

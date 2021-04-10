@@ -1,0 +1,35 @@
+{
+    "imageListData": {
+      "headerTitle": "Alexa image list header title",
+      "headerSubtitle": "Header subtitle",
+      "headerAttributionImage": "https://s3.amazonaws.com/ask-skills-assets/apl-layout-assets/attribution_dark_hub_prime.png",
+      "backgroundImageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/BT6_Background.png",
+      "defaultImageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/BT7_Background.png",
+      "hintText": "Tente dizer, \"Alexa, fazer agendamento massagem\"",
+      "listItemsToShow": [
+        {
+            "primaryText": "João Célio",
+            "secondaryText": "Especialidades: Shiatsu, Tailandesa",
+            "tertiaryText": "Diga Agendar Joao Celio",
+            "imageSource": "https://bp.imguol.com/2014/03/21/joao-kleber-no-bate-papo-uol-1395440143911_615x470.jpg",
+            "imageProgressBarPercentage": 90,
+          "imageShowProgressBar": false,
+          "ratingSlotMode": "multiple",
+          "ratingNumber": 4.87,
+          "ratingText": "(206 ratings)"
+        },
+        {
+          "primaryText": "Jóia Maria",
+          "secondaryText":  "A partir R$80,00",
+          "tertiaryText": "Diga Agendar Jóia Maria",
+          "tertiaryTextPosition": "top",
+          "imageSource": "https://img.vixdata.io/pd/webp-large/pt/sites/default/files/bdm/field/image/gloria-maria-apresentadora.jpg",   
+          "providerText": "Provider Text",
+          "imageProgressBarPercentage": 50,
+          "ratingSlotMode": "multiple",
+          "ratingNumber": 4.5,
+          "ratingText": "(500 ratings)"
+        }
+      ]
+    }
+  }

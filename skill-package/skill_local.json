@@ -20,7 +20,7 @@
     "apis": {
       "custom": {
         "endpoint": {
-          "uri": "https://c610cbaf4889.ngrok.io",
+          "uri": "https://a5ef561e27dc.ngrok.io",
           "sslCertificateType": "Wildcard"
         },
         "interfaces": [

@@ -1,0 +1,427 @@
+{
+    "type": "APL",
+    "version": "1.4",
+    "theme": "dark",
+    "import": [
+        {
+            "name": "alexa-layouts",
+            "version": "1.2.0"
+        }
+    ],
+   "graphics": {
+  "gradientBackground": {
+    "type": "AVG",
+    "version": "1.2",
+    "height": 100,
+    "width": 100,
+    "scaleTypeWidth": "stretch",
+    "scaleTypeHeight": "stretch",
+    "resources": {
+      "gradients": {
+        "grayGradient": {
+          "inputRange": [
+            0,
+            1
+          ],
+          "colorRange": [
+            "#2B3A4D",
+            "#0B0F13"
+          ],
+          "type": "radial",
+          "units": "boundingBox",
+          "centerX": 1,
+          "centerY": 0,
+          "radius": 1.6
+        }
+      }
+    },
+    "items": [
+         {
+          "type": "VectorGraphic",
+          "source": "gradientBackground",
+          "width": "100%",
+          "height": "100%",
+          "scale": "fill",
+          "position": "absolute"
+        },    
+      {
+        "type": "path",
+        "pathData": "M0,0 L${width},0 L${width},${height} L0,${height}",
+        "fill": "@grayGradient",
+        "fillTransform": "scale(0.5)"
+      }
+    ]
+  }
+},
+    "settings": {},
+    "resources": [
+        {
+            "description": "Day of the week colors",
+            "colors": {
+                "weekDaysRedThemeColor": "#E9342C",
+                "weekDaysBlueThemeColor": "#478CBA",
+                "weekDaysGreenThemeColor": "#8BC058"
+            }
+        },
+        {
+            "description": "Light theme color",
+            "colors": {
+                "backgroundThemeColor": "#F8F9FA",
+                "mainTitleThemeColor": "#7F8187",
+                "weekDaysHeaderThemeColor": "#7F8187",
+                "weekDaysThemeColor": "#4E4F53"
+            },
+            "dimensions": {
+                "weekDaysMarkerThemePositionTop": "35",
+                "weekDaysMarkerThemePositionLeft": "30",
+                "weekDaysContainerThemeWidth": "70",
+                "weekDaysContainerThemeHeight": "50"
+            },
+            "strings": {
+                "mainImageThemeUrl": "https://undercontrol.blob.core.windows.net/alexa/planner.jpg"
+            }
+        },
+        {
+            "description": "Dark theme color",
+            "when": "${viewport.theme == 'dark'}",
+            "colors": {
+                "backgroundThemeColor": "#000000",
+                "mainTitleThemeColor": "#FFF",
+                "weekDaysHeaderThemeColor": "#FFF",
+                "weekDaysThemeColor": "#FFF"
+            },
+            "strings": {
+                "mainImageThemeUrl": "https://undercontrol.blob.core.windows.net/alexa/planner.jpg"
+            }
+        },
+        {
+            "description": "Small Hub Round",
+            "when": "${viewport.width < 490}",
+            "dimensions": {
+                "weekDaysMarkerThemePositionTop": "22",
+                "weekDaysMarkerThemePositionLeft": "22",
+                "weekDaysContainerThemeWidth": "54",
+                "weekDaysContainerThemeHeight": "32"
+            }
+        },
+        {
+            "description": "Small Hub ",
+            "when": "${ (viewport.width > 490) && (viewport.width < 1024)  }",
+            "dimensions": {
+                "weekDaysMarkerThemePositionTop": "33",
+                "weekDaysMarkerThemePositionLeft": "24",
+                "weekDaysContainerThemeWidth": "60",
+                "weekDaysContainerThemeHeight": "45"
+            }
+        },
+        {
+            "description": "Large Hub ",
+            "when": "${ (viewport.width > 1024) && (viewport.width < 1920)  }",
+            "dimensions": {
+                "weekDaysMarkerThemePositionTop": "40",
+                "weekDaysMarkerThemePositionLeft": "39",
+                "weekDaysContainerThemeWidth": "90",
+                "weekDaysContainerThemeHeight": "60"
+            }
+        }
+    ],
+    "styles": {
+        "headerStyle": {
+            "values": {
+                "fontSize": "10",
+                "fontWeight": "100"
+            }
+        },
+        "dayStyle": {
+            "values": {
+                "fontSize": "11",
+                "fontWeight": "100"
+            }
+        }
+    },
+    "onMount": [],
+    "graphics": {
+        "dayMarker": {
+            "type": "AVG",
+            "version": "1.0",
+            "height": 24,
+            "width": 24,
+            "parameters": [
+                "color"
+            ],
+            "items": [
+                {
+                    "type": "path",
+                    "pathData": "M12,22 C17.5228475,22 22,17.5228475 22,12 C22,6.4771525 17.5228475,2 12,2 C6.4771525,2 2,6.4771525 2,12 C2,14.3595452 2.81720757,16.5282213 4.18402996,18.2384356 C6.01644767,20.5312185 8.83669769,22 12,22 Z",
+                    "stroke": "#ECC30A",
+                    "strokeWidth": 0,
+                    "fill": "${color}"
+                }
+            ]
+        }
+    },
+    "commands": {},
+    "layouts": {
+        "MC_calendarWeeksSequence": {
+            "parameters": [
+                "weekDays"
+            ],
+            "items": [
+                {
+                    "type": "Container",
+                    "width": "100%",
+                    "height": "100%",
+                    "items": [
+                        {
+                            "type": "Sequence",
+                            "width": "100%",
+                            "height": "100%",
+                            "data": "${weekDays}", 
+                            "scrollDirection": "vertical",
+                            "items": [
+                                {
+                                    "listData": "${data}",
+                                    "type": "MC_calendarDaysSequence"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "MC_calendarDaysSequence": {
+            "parameters": [
+                "listData"
+            ],
+            "items": [
+                {
+                    "type": "Container",
+                    "width": "100%",
+                    "items": [
+                        {
+                            "type": "Sequence",
+                            "width": "100%",
+                            "data": "${listData}",
+                            "scrollDirection": "horizontal",
+                            "items": [
+                                {
+                                    "type": "MC_caLendarDay"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "MC_caLendarDay": {
+            "items": [
+                {
+                    "type": "Container",
+                    "width": "@weekDaysContainerThemeWidth",
+                    "height": "@weekDaysContainerThemeHeight",
+                    "items": [
+                        {
+                            "type": "Text",
+                            "style": "dayStyle",
+                            "height": "100%",
+                            "alignSelf": "auto",
+                            "position": "relative",
+                            "textAlign": "center",
+                            "textAlignVertical": "center",
+                            "color": "@weekDaysThemeColor",
+                            "text": "${data.text}",
+                            "left": "0",
+                            "top": "0"
+                        },
+                        {
+                            "type": "VectorGraphic",
+                            "width": 11,
+                            "height": 11,
+                            "position": "absolute",
+                            "color": "${data.marker_color}",
+                            "left": "@weekDaysMarkerThemePositionLeft",
+                            "top": "@weekDaysMarkerThemePositionTop",
+                            "source": "dayMarker",
+                            "scale": "fill"
+                        }
+                    ]
+                }
+            ]
+        },
+        "MC_calendarHeaderSequence": {
+            "parameters": [
+                "listData"
+            ],
+            "items": [
+                {
+                    "type": "Container",
+                    "width": "100%",
+                    "items": [
+                        {
+                            "type": "Sequence",
+                            "width": "100%",
+                            "data": "${listData}",
+                            "scrollDirection": "horizontal",
+                            "items": [
+                                {
+                                    "type": "MC_calendarHeader"
+                                }
+                            ],
+                            "alignSelf": "auto"
+                        }
+                    ]
+                }
+            ]
+        },
+        "MC_calendarHeader": {
+            "items": [
+                {
+                    "type": "Container",
+                    "width": "@weekDaysContainerThemeWidth",
+                    "items": [
+                        {
+                            "type": "Text",
+                            "style": "headerStyle",
+                            "textAlign": "center",
+                            "textAlignVertical": "center",
+                            "color": "@weekDaysHeaderThemeColor",
+                            "text": "${data}"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "items": [
+            {
+                "type": "Container",
+                "when": "${viewport.width < 490}",
+                "width": "100%",
+                "height": "100%",
+                "items": [
+                    {
+                        "backgroundColor": "@backgroundThemeColor",
+                        "type": "AlexaBackground"
+                    },
+                    {
+                        "type": "Container",
+                        "width": "100%",
+                        "height": "100%",
+                        "items": [
+                            {
+                                "headerAttributionImage": "https://undercontrol.blob.core.windows.net/alexa/ico.png",
+                                "type": "AlexaHeader"
+                            },
+                            {
+                                "type": "Text",
+                                "width": "100%",
+                                "position": "absolute",
+                                "textAlign": "center",
+                                "textAlignVertical": "center",
+                                "color": "@mainTitleThemeColor",
+                                "text": "Fevereiro, <b>2021</b>",
+                                "left": "0",
+                                "top": "20%"
+                            },
+                            {
+                                "type": "Container",
+                                "width": "80%",
+                                "height": "100%",
+                                "alignItems": "center",
+                                "items": [
+                                    {
+                                        "listData": "${payload.myDocumentData.days}",
+                                        "type": "MC_calendarHeaderSequence"
+                                    },
+                                    {
+                                        "weekDays": "${payload.myDocumentData.days}",
+                                        "type": "MC_calendarWeeksSequence"
+                                    }
+                                ],
+                                "left": "10%",
+                                "top": "5%",
+                                "right": "10%"
+                            }
+                        ],
+                        "left": "0",
+                        "top": "0",
+                        "right": "0",
+                        "bottom": "0"
+                    }
+                ]
+            },
+            {
+                "type": "Container",
+                "width": "100%",
+                "height": "100%",
+                "items": [
+                    {
+                        "backgroundColor": "@backgroundThemeColor",
+                        "type": "AlexaBackground"
+                    },
+                    {
+                        "type": "Container",
+                        "width": "${(viewport.width/12)*8}",
+                        "height": "100%",
+                        "items": [
+                            {
+                                "headerAttributionImage": "https://undercontrol.blob.core.windows.net/alexa/ico.png",
+                                "type": "AlexaHeader"
+                            },
+                            {
+                                "type": "Text",
+                                "position": "absolute",
+                                "color": "@mainTitleThemeColor",
+                                "text": "Fevereiro, <b>2021</b>",
+                                "left": "10%",
+                                "top": "6%"
+                            },
+                            {
+                                "type": "Container",
+                                "width": "80%",
+                                "height": "100%",
+                                "items": [
+                                    {
+                                        "listData": "${payload.myDocumentData.header}",
+                                        "type": "MC_calendarHeaderSequence"
+                                    },
+                                    {
+                                        "weekDays": "${payload.myDocumentData.days}",
+                                        "type": "MC_calendarWeeksSequence"
+                                    }
+                                ],
+                                "left": "10%",
+                                "top": "10%",
+                                "right": "10%"
+                            }
+                        ],
+                        "left": "${(viewport.width/12)*4}",
+                        "top": "0",
+                        "right": "0",
+                        "bottom": "0"
+                    },
+                    {
+                        "type": "Image",
+                        "width": "100%",
+                        "maxWidth": "${(viewport.width/12)*4}",
+                        "height": "100%",
+                        "source": "@mainImageThemeUrl",
+                        "scale": "best-fill",
+                        "align": "left",
+                        "borderRadius": "0",
+                        "position": "absolute",
+                        "imageBlurredBackground": true,
+                        "left": "0",
+                        "top": "0",
+                        "bottom": "0"
+                    }
+                ]
+            }
+        ]
+    }
+}
+

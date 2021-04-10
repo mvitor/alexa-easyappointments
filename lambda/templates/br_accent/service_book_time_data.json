@@ -1,0 +1,203 @@
+{
+    "myDocumentData": {
+          "type": "object",
+          "properties": {
+            "title": "This is another very simple sample.",
+            "mainText": "Note these properties are in a <code>properties</code> object."
+           },
+
+           "year": "2021",
+           "month": "Fevereiro",
+           "days": [
+               [
+                   {
+                       "text": "",
+                       "marker_color": ""
+                   },
+                   {
+                       "text": "",
+                       "marker_color": ""
+                   },
+                   {
+                       "text": "",
+                       "marker_color": ""
+                   },
+                   {
+                       "text": "",
+                       "marker_color": ""
+                   },
+                   {
+                       "text": "",
+                       "marker_color": ""
+                   },
+                   {
+                       "text": "",
+                       "marker_color": ""
+                   },
+                   {
+                       "text": "1",
+                       "marker_color": "@weekDaysBlueThemeColor"
+                   }
+               ],
+               [
+                   {
+                       "text": "2",
+                       "marker_color": "@weekDaysGreenThemeColor"
+                   },
+                   {
+                       "text": "3",
+                       "marker_color": "@weekDaysRedThemeColor"
+                   },
+                   {
+                       "text": "4",
+                       "marker_color": "@weekDaysRedThemeColor"
+                   },
+                   {
+                       "text": "5",
+                       "marker_color": "@weekDaysRedThemeColor"
+                   },
+                   {
+                       "text": "6",
+                       "marker_color": "@weekDaysGreenThemeColor"
+                   },
+                   {
+                       "text": "7",
+                       "marker_color": "@weekDaysRedThemeColor"
+                   },
+                   {
+                       "text": "8",
+                       "marker_color": "@weekDaysRedThemeColor"
+                   }
+               ],
+               [
+                   {
+                       "text": "9",
+                       "marker_color": "@weekDaysRedThemeColor"
+                   },
+                   {
+                       "text": "10",
+                       "marker_color": "@weekDaysRedThemeColor"
+                   },
+                   {
+                       "text": "11",
+                       "marker_color": "@weekDaysGreenThemeColor"
+                   },
+                   {
+                       "text": "12",
+                       "marker_color": "@weekDaysGreenThemeColor"
+                   },
+                   {
+                       "text": "13",
+                       "marker_color": "@weekDaysGreenThemeColor"
+                   },
+                   {
+                       "text": "14",
+                       "marker_color": "@weekDaysGreenThemeColor"
+                   },
+                   {
+                       "text": "15",
+                       "marker_color": "@weekDaysGreenThemeColor"
+                   }
+               ],
+               [
+                   {
+                       "text": "16",
+                       "marker_color": "@weekDaysGreenThemeColor"
+                   },
+                   {
+                       "text": "17",
+                       "marker_color": "@weekDaysGreenThemeColor"
+                   },
+                   {
+                       "text": "18",
+                       "marker_color": "@weekDaysGreenThemeColor"
+                   },
+                   {
+                       "text": "19",
+                       "marker_color": "@weekDaysGreenThemeColor"
+                   },
+                   {
+                       "text": "20",
+                       "marker_color": "@weekDaysGreenThemeColor"
+                   },
+                   {
+                       "text": "21",
+                       "marker_color": "@weekDaysGreenThemeColor"
+                   },
+                   {
+                       "text": "22",
+                       "marker_color": "@weekDaysGreenThemeColor"
+                   }
+               ],
+               [
+                   {
+                       "text": "23",
+                       "marker_color": "@weekDaysRedThemeColor"
+                   },
+                   {
+                       "text": "24",
+                       "marker_color": "@weekDaysRedThemeColor"
+                   },
+                   {
+                       "text": "25",
+                       "marker_color": "@weekDaysRedThemeColor"
+                   },
+                   {
+                       "text": "26",
+                       "marker_color": "@weekDaysRedThemeColor"
+                   },
+                   {
+                       "text": "27",
+                       "marker_color": "@weekDaysRedThemeColor"
+                   },
+                   {
+                       "text": "28",
+                       "marker_color": "@weekDaysRedThemeColor"
+                   },
+                   {
+                       "text": "29",
+                       "marker_color": "@weekDaysGreenThemeColor"
+                   }
+               ],
+               [
+                   {
+                       "text": "30",
+                       "marker_color": "@weekDaysGreenThemeColor"
+                   },
+                   {
+                       "text": "",
+                       "marker_color": ""
+                   },
+                   {
+                       "text": "",
+                       "marker_color": ""
+                   },
+                   {
+                       "text": "",
+                       "marker_color": ""
+                   },
+                   {
+                       "text": "",
+                       "marker_color": ""
+                   },
+                   {
+                       "text": "",
+                       "marker_color": ""
+                   },
+                   {
+                       "text": "",
+                       "marker_color": ""
+                   }
+               ]
+           ], 
+      "header": [
+        "SEGUNDA",
+        "TERÇA",
+        "QUARTA",
+        "QUINTA",
+        "SEXTA",
+        "SÁBADO",
+        "DOMINGO"
+    ]
+}
+}

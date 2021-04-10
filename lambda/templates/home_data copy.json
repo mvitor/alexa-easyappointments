@@ -5,9 +5,9 @@
         "title": "Bem vindo a Nutriclinic",
         "listItems": [
             {
-                "primaryText": "Servissos",
-                "secondaryText": "Exibir Servissos",
-                "tertiaryText": "Diga Exibir Servissos",
+                "primaryText": "Serviços",
+                "secondaryText": "Exibir Serviços",
+                "tertiaryText": "Diga Exibir Serviços",
                 "tertiaryTextPosition": "top",
                 "imageAlignment": "left",
                 "imageSource": "https://undercontrol.blob.core.windows.net/alexa/noun_services_1546238.png",
@@ -38,8 +38,8 @@
             },
 
             {
-                "primaryText": "Horario",
-                "secondaryText": "Horario de Funcionamento",
+                "primaryText": "Horário",
+                "secondaryText": "Horário de Funcionamento",
                 "tertiaryText": "Diga Exibir Horario de Funcionamento",
                 "tertiaryTextPosition": "top",
                 "imageAlignment": "left",
@@ -71,6 +71,6 @@
             }
         ],
         "logoUrl": "https://undercontrol.blob.core.windows.net/alexa/ico.png",
-        "hintText": "Tente, \"Alexa, exibir Servissos\""
+        "hintText": "Tente, \"Alexa, exibir Serviços\""
     }
 }

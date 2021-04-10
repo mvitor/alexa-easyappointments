@@ -1,4 +1,6 @@
 const Alexa = require('ask-sdk-core');
+var https = require('https'); 
+
 
 function intentIs(handlerInput = {}, intentName) {
   return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest' &&
@@ -65,11 +67,71 @@ function getProductsDataSource(products = []) {
     }
   }
 }
+function getTodayDate (offset) {
+  // current timestamp in milliseconds
+  let ts = Date.now();
+  let date_ob = new Date(ts);
+  let date = ""
+  if (offset > 1) {
+    date = date_ob.getDate() -  offset;
+  }
+  else {
+    date = date_ob.getDate();
+  }
+  let month = date_ob.getMonth() + 1;
+  let year = date_ob.getFullYear();
+  // prints date & time in YYYY-MM-DD format
+  return(year + "-" + month + "-" + date);
+}
 
+var https = require('https');
+const getHttp =   function(options) {
+    return new Promise((resolve, reject) => {
+    var request = https.request(options, function (response) {
+            response.setEncoding('utf8');
+            let returnData = '';
+            if (response.statusCode < 200 || response.statusCode >= 300) {
+                return reject(new Error(`${response.statusCode}: ${response.req.getHeader('host')} ${response.req.path}`));
+            }
+           
+            response.on('data', chunk => {
+                returnData += chunk;
+            });
+           
+            response.on('end', () => {
+                resolve(returnData);
+            });
+           
+            response.on('error', error => {
+                reject(error);
+            });
+        });
+        request.end();
+    });
+}
+
+// data = request(options,  function(err, res, body) {
+//   if (!err && res.statusCode == 200) {
+//     console.log(res.body);
+//     data = JSON.parse(res.body);
+//     //service_items = data 
+//     service_items[0].primaryText = data[1].name
+//     service_items[0].primaryText = "Ganhar PIX"
+//     service_items[1].primaryText = data[0].name
+//     service_items[2].primaryText = data[2].name
+// }
+// else {console.log("Request failed!")}
+// });
+// console.log(data);
+
+//     return service_items;
+// }
 module.exports = {
   intentIs,
   supportsAPL,
   getCurrentDate,
   renderProduct,
   getProductsDataSource,
+  getTodayDate,
+  getHttp
 };

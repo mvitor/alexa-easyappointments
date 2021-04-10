@@ -2,15 +2,16 @@
     "imageListData": {
         "type": "object",
         "objectId": "imageListSample",
+
         "title": "Bem vindo a Nutriclinic",
         "listItems": [
             {
-                "primaryText": "Servissos",
-                "secondaryText": "Exibir Servissos",
-                "tertiaryText": "Diga Exibir Servissos",
+                "primaryText": "Massagem",
+                "secondaryText": "A partir R$60,00",
+                "tertiaryText": "Diga Conhecer Massagem",
                 "tertiaryTextPosition": "top",
                 "imageAlignment": "left",
-                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/noun_services_1546238.png",
+                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/massage.png",
                 "primaryAction": [
                     {
                         "type": "SetValue",
@@ -21,29 +22,12 @@
                 ]
             },
             {
-                "primaryText": "Agendamento",
-                "secondaryText": "Fazer Agendamento",
-                "tertiaryText": "Diga Fazer Agendamento",
+                "primaryText": "Reiki",
+                "secondaryText": "A partir R$80,00",
+                "tertiaryText": "Diga Conhecer Reiki",
                 "tertiaryTextPosition": "top",
                 "imageAlignment": "left",
-                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/booking.png",
-                "primaryAction": [
-                    {
-                        "type": "SetValue",
-                        "componentId": "cheeseList",
-                        "property": "headerTitle",
-                        "value": "${payload.imageListData.listItems[2].primaryText} is selected"
-                    }
-                ]
-            },
-
-            {
-                "primaryText": "Horario",
-                "secondaryText": "Horario de Funcionamento",
-                "tertiaryText": "Diga Exibir Horario de Funcionamento",
-                "tertiaryTextPosition": "top",
-                "imageAlignment": "left",
-                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/wereopen1.png",
+                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/noun_services_1546238.png",
                 "primaryAction": [
                     {
                         "type": "SetValue",
@@ -54,23 +38,23 @@
                 ]
             },
             {
-                "primaryText": "Mensagem",
-                "secondaryText": "Deixar Mensagem",
-                "tertiaryText": "Diga Deixar Mensagem",
+                "primaryText": "Acupuntura",
+                "secondaryText": "A partir R$60,00",
+                "tertiaryText": "Diga Conhecer Acupuntura",
                 "tertiaryTextPosition": "top",
                 "imageAlignment": "left",
-                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/booking.png",
+                "imageSource": "https://undercontrol.blob.core.windows.net/alexa/noun_acupuncture.png",
                 "primaryAction": [
                     {
                         "type": "SetValue",
                         "componentId": "cheeseList",
                         "property": "headerTitle",
-                        "value": "${payload.imageListData.listItems[1].primaryText} is selected"
+                        "value": "${payload.imageListData.listItems[2].primaryText} is selected"
                     }
                 ]
             }
         ],
         "logoUrl": "https://undercontrol.blob.core.windows.net/alexa/ico.png",
-        "hintText": "Tente, \"Alexa, exibir Servissos\""
+        "hintText": "Tente dizer, \"Alexa, exibir detalhes massagem?\" ou \n \"Alexa, fazer agendamento massagem?\""
     }
 }

@@ -1,0 +1,12 @@
+{
+  "alexaDetailData": {
+    "backgroundImage": "https://d2o906d8ln7ui1.cloudfront.net/images/BT2_Background.png",
+    "title": "Massagem",
+    "detailImage": "https://media.womensweekly.com.sg/public/2020/06/spa-awards-body-massages-main.jpg",
+    "textContent": {
+      "Especialidades": "Especialidades: Terapeutica, Esportiva, Shiatsu, Tailandesa, Californiana, Drenagem linfatica.<br> Valor: A partir R$ 60,00/hora.<br>Diga 'Alexa, Exibir mais detalhes' ou <br> Clique em Mais detalhes para saber mais",
+      "primaryText": "Descontraia com uma massagem de relaxamento! Para fazer um agendamento diga agendar massagem terapeutica"
+    },
+    "logoUrl": "https://undercontrol.blob.core.windows.net/alexa/ico.png"
+  }
+}

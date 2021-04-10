@@ -3,10 +3,11 @@
 // session persistence, api calls, and more.
 const Alexa = require('ask-sdk-core');
 const Speech = require( 'ssml-builder' );
-
+const getHttp = require('./lib').getHttp;
 var AmazonSpeech = require('ssml-builder/amazon_speech');
 
 const supportsAPL = require('./lib').supportsAPL;
+
 const i18n = require('i18next'); 
 const sprintf = require('i18next-sprintf-postprocessor');
 
@@ -14,8 +15,16 @@ const main = require('./templates/main.json');
 const home = require('./templates/home.json');
 const home_datasource = require('./templates/home_data.json');
 const display = require('./templates/display.json');
-
-
+var options = {
+    'method': 'GET',
+    'hostname': 'myappointment.azurewebsites.net',
+    'path': '/index.php/api/v1/services',
+    'headers': {
+      'Authorization': 'Basic bXZpdG9yOnNhQFRqeDE1',
+      'Cookie': 'ARRAffinity=91a2a611e160df0d18791cf2ecfa34c99489385d2e6c7cfb471ea2a19c194109; ARRAffinitySameSite=92a2a611e160df0d18791cf2ecfa34c99489385d2e6c7cfb471ea2a19c194109; csrfCookie=1926dd35a9a6e37b473218600e06753d; ea_session=scuib7md3p400n5dqiqfmtq4ovfu9av0'
+    },
+    'maxRedirects': 19
+};
 
 // const LaunchRequestHandler = {
 //     canHandle(handlerInput) {
@@ -615,13 +624,29 @@ const ShowServicesHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'ShowServicesIntent';
     },
-    handle(handlerInput) {
+    async handle(handlerInput) {
         const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+        const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+
+        const response = await getHttp(options);
+        //console.log(response);
+        const service_items =  JSON.parse(response);
+        
+        sessionAttributes.serviceItems = response;
+        handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
+
+        // attendantsNumber:1        // availabilitiesType:'flexible'        // categoryId:null        // currency:'Reais'        // description:''        // duration:30        // id:1        // location:''        // name:'Reiki'        // price:50
         if (supportsAPL(handlerInput)) {
             const services_display = require('./templates/servicos.json');
             const services_datasource = require('./templates/servicos_data.json');
-
-            const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+            for (var item in services_datasource.imageListData.listItems){
+                if (services_datasource.imageListData.listItems.hasOwnProperty(item)) {
+                    services_datasource.imageListData.listItems[item].primaryText = service_items[item].name 
+                    services_datasource.imageListData.listItems[item].secondaryText = "Valor: "+service_items[item].price+" "+service_items[item].currency
+                    services_datasource.imageListData.listItems[item].tertiaryText = "Diga Conhecer "+service_items[item].name 
+                    console.log("Key is " + item + ", value is " + services_datasource.imageListData.listItems[item].primaryText);
+                }
+            }
             var speech = new AmazonSpeech();
             speech.say(requestAttributes.t('SERVICES_MESSAGE'))
             .pause('1s')
@@ -637,44 +662,41 @@ const ShowServicesHandler = {
             .pause('500ms')
             speech.say(requestAttributes.t('SERVICES_MESSAGE6'))
             .pause('500ms')
-
-
-
             return handlerInput.responseBuilder
                 .speak(speech.ssml())
                 .reprompt(requestAttributes.t('SERVICES_PROMPT'))
-                //.speak('Seja Bem vindo')
                 .addDirective({
                     type: 'Alexa.Presentation.APL.RenderDocument',
                     document: services_display,
                     token: 'servicespage',
                     datasources: services_datasource
         
-                })
-                // .addDirective({
-                //     type : 'Alexa.Presentation.APL.ExecuteCommands',
-                //     token: "servicespage",
-                //     commands: [
-                //         {
-                //             type: "Parallel",
-                //             commands: [
-                //                 {
-                //                     type: "Idle",
-                //                     delay: 60000
-                //                 }],
-                //         }
-                //     ]
-                    
-                // })
+                })                
                 .getResponse();
+            // .addDirective({
+            //     type : 'Alexa.Presentation.APL.ExecuteCommands',
+            //     token: "servicespage",
+            //     commands: [
+            //         {
+            //             type: "Parallel",
+            //             commands: [
+            //                 {
+            //                     type: "Idle",
+            //                     delay: 60000
+            //                 }],
+            //         }
+            //     ]
+                
+            // })
+
         }
         else {
             return handlerInput.responseBuilder
-                .speak(speakOutput)
-                .reprompt(speakOutput)
-                .withSimpleCard('Try this on an amazon device with a screen', speakOutput)
-                .getResponse();
-            }
+            .speak(speakOutput)
+            .reprompt(speakOutput)
+            .withSimpleCard('Try this on an amazon device with a screen', speakOutput)
+            .getResponse();
+        }
     }
 };
 const BookConfirmedHandler = {
@@ -770,18 +792,54 @@ const ScheduleStartHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'ScheduleStartIntent'
     },
-    handle(handlerInput) {
+    async handle(handlerInput) {
         var alexa = this;
         const { intent } = handlerInput.requestEnvelope.request;
         const answerSlotFilled = intent
         var speech = new AmazonSpeech()
         const ServiceName = intent.slots.ServiceName.value;
         const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+        const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+
         var speech = new AmazonSpeech();
-
-
         let service_display = require('./templates/service_provider_massage.json');
         let service_datasource = require('./templates/service_provider_massage_data.json');
+        // API Call
+        options.path = '/index.php/api/v1/providers';
+        var response = ""
+        var service_provider_items = {}
+        var service_availabilities = {}
+        // To be created 
+        if (sessionAttributes.serviceProviderItems) {
+            response = sessionAttributes.serviceProviderItems;
+            //console.log(response);
+            service_provider_items =  JSON.parse(response);
+            console.log("Got response from session");
+        } 
+        else { 
+            const response = await getHttp(options);
+            //console.log(response);
+            sessionAttributes.serviceProviderItems = response;
+            service_provider_items =  JSON.parse(response)
+            handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
+            console.log("Got it from http");
+        }
+
+        // skip first
+        // skip_one_item = 1
+        // for (var item in service_provider_items){
+        //     // Any sense ?
+        //     if (service_provider_items.hasOwnProperty(item)) {
+        //         service_datasource.itemList.items[skip_one_item].primaryText = service_provider_items[item].firstName+ " "+service_provider_items[item].lastName 
+        //         service_datasource.itemList.items[skip_one_item].secondaryText = "E-mail:"+service_provider_items[item].email+"Telefone: "+service_provider_items[item].phone
+        //         service_datasource.itemList.items[skip_one_item].tertiaryText = "Diga Conhecer "+ServiceName
+        //         //console.log("Key is " + item + ", value is " + service_provider_items[item].firstName);
+        //         skip_one_item = skip_one_item + 1
+        //                 //id: 2, firstName: 'Jóia', lastName: 'Maria', email: 'marciovitormatos@gmail.com', mobile: '', …
+        //     }
+        // }
+
+
         slotName = 'ScheduleMassagist'
         if (! intent.slots.ScheduleMassagist.value)     {
             speech.say(requestAttributes.t('SERVICE_SCHEDULE_MESSAGE1'))
@@ -836,7 +894,6 @@ const ScheduleStartHandler = {
             var speech = new AmazonSpeech();
             service_display = require('./templates/schedule_confirmed.json');
             service_datasource = require('./templates/schedule_confirmed_data.json');
-
             speech.say("Para finalizar o agendamento, necessito tomar nota de seu nome e telefone")
             .pause('500ms')
             speech.say("Por favor me diga inicialmente o seu nome completo")
@@ -846,47 +903,77 @@ const ScheduleStartHandler = {
             //sessionAttributes.getPhone = true;
             //handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
         }
-
-
         // We do have all slots then ask to confirm book it
         else if (intent.slots.ServiceName.value && intent.slots.ScheduleMassagist.value && intent.slots.ScheduleDate.value && intent.slots.ScheduleTime.value) {
-            speech.say("Ok!")
-            .pause('200ms')
-            speech.say("Estaremos agendando o serviço "+intent.slots.ServiceName.value)
-            .pause('50ms')
-            speech.say("Com o profissional "+intent.slots.ScheduleMassagist.value)
-            .pause('50ms')
-            speech.say("Para as "+intent.slots.ScheduleTime.value+" horas")
-            speech.say("Do dia ")
-            //var AmazonDateParser = require('amazon-date-parser');
-            //intent.slots.ScheduleDate.value = 
-            //var date = new AmazonDateParser('2021-02-11');                 
-            var date = '02-11';                 
-            speech.sayAs({
-                //word: intent.slots.ScheduleDate.value,
-                word: date,
-                interpret: "date",
-                format: "md"
-            })            
-            .pause('50ms')
-            speech.say("Você confirma o agendamento ?")
-            .pause('50ms')
-            slotName = 'CONFIRMED'
-            service_display = require('./templates/service_book_confirm.json');
-            service_datasource = require('./templates/service_book_confirm_data.json');
-        } 
-        else if (intent.slots.ScheduleMassagist.value && intent.slots.ScheduleDate.value) {
-            speech.say("Para qual horário você gostaria de agendar a massagem ?")
-            slotName = 'ScheduleTime'
-            service_display = require('./templates/service_book_time.json');
-            service_datasource = require('./templates/service_book_time_data.json');
-        }
-        else if (intent.slots.ScheduleMassagist.value) {
-            speech.say("Para qual dia você gostaria de agendar a massagem?")
+                speech.say("Ok!")
+                .pause('200ms')
+                speech.say("Estaremos agendando o serviço "+intent.slots.ServiceName.value)
+                .pause('50ms')
+                speech.say("Com o profissional "+intent.slots.ScheduleMassagist.value)
+                .pause('50ms')
+                speech.say("Para as "+intent.slots.ScheduleTime.value+" horas")
+                speech.say("Do dia ")
+                //var AmazonDateParser = require('amazon-date-parser');
+                //intent.slots.ScheduleDate.value = 
+                //var date = new AmazonDateParser('2021-02-11');                 
+                var date = '02-11';                 
+                speech.sayAs({
+                    //word: intent.slots.ScheduleDate.value,
+                    word: date,
+                    interpret: "date",
+                    format: "md"
+                })            
+                    .pause('50ms')
+                    speech.say("Você confirma o agendamento ?")
+                .pause('50ms')
+                slotName = 'CONFIRMED'
+                service_display = require('./templates/service_book_confirm.json');
+                service_datasource = require('./templates/service_book_confirm_data.json');
+            } 
+            else if (intent.slots.ScheduleMassagist.value && intent.slots.ScheduleDate.value) {
+                speech.say("Para qual horário você gostaria de agendar a massagem ?")
+                slotName = 'ScheduleTime'
+                service_display = require('./templates/service_book_time.json');
+                service_datasource = require('./templates/service_book_time_data.json');
+            }
+            else if (intent.slots.ScheduleMassagist.value) {
+                service_display = require('./templates/service_book_date.json');
+                service_datasource = require('./templates/service_book_date_data.json')
+                // API ScheduleMassagist Availabily Call
+                const getTodayDate = require('./lib').getTodayDate;
+                options.path = '/index.php/api/v1/availabilities';
+                let TodayDate = getTodayDate();
+                query = '?providerId=2&serviceId=1&date='+TodayDate;
+                options.path = options.path+"/"+query;
+                let response = "";
+                // To be created 
+                response = await getHttp(options);
+                //console.log(response);
+                service_availabilities =  JSON.parse(response)
+                offset = -1
+                while (service_availabilities.length > 0) {
+                    todayDate = getTodayDate(offset);
+                    query = '?providerId=2&serviceId=1&date='+todayDate;
+                    options.path = options.path+"/"+query ;
+                    const response = await getHttp(options);
+                    service_availabilities =  JSON.parse(response)
+                    offset = offset - 1 
+                    console.log("Got serviceAvailabilities from http");
+                }
+            // skip first
+            skip_one_item = 1
+            // for (var item in service_availabilities){
+            //     service_datasource.itemList.items[skip_one_item].primaryText = service_provider_items[item].firstName+ " "+service_provider_items[item].lastName 
+            //     service_datasource.itemList.items[skip_one_item].secondaryText = "E-mail:"+service_provider_items[item].email+"Telefone: "+service_provider_items[item].phone
+            //     service_datasource.itemList.items[skip_one_item].tertiaryText = "Diga Conhecer "+ServiceName
+            //     //console.log("Key is " + item + ", value is " + service_provider_items[item].firstName);
+            //     skip_one_item = skip_one_item + 1
+            //             //id: 2, firstName: 'Jóia', lastName: 'Maria', email: 'marciovitormatos@gmail.com', mobile: '', …
+            // }
+
+            speech.say("Para qual dia voce gostaria de agendar a massagem?")
             slotName = 'ScheduleDate'
-            service_display = require('./templates/service_book_date.json');
-            service_datasource = require('./templates/service_book_date_data.json')
-            slotName = 'ScheduleDate'
+
         }
         if (supportsAPL(handlerInput)) {
             const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
