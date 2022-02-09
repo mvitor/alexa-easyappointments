@@ -20,7 +20,6 @@ var options = {
     'hostname': 'myappointment.azurewebsites.net',
     'path': '/index.php/api/v1/services',
     'headers': {
-      'Authorization': 'Basic bXZpdG9yOnNhQFRqeDE1',
       'Cookie': 'ARRAffinity=91a2a611e160df0d18791cf2ecfa34c99489385d2e6c7cfb471ea2a19c194109; ARRAffinitySameSite=92a2a611e160df0d18791cf2ecfa34c99489385d2e6c7cfb471ea2a19c194109; csrfCookie=1926dd35a9a6e37b473218600e06753d; ea_session=scuib7md3p400n5dqiqfmtq4ovfu9av0'
     },
     'maxRedirects': 19
