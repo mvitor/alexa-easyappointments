@@ -110,22 +110,6 @@ const getHttp =   function(options) {
     });
 }
 
-// data = request(options,  function(err, res, body) {
-//   if (!err && res.statusCode == 200) {
-//     console.log(res.body);
-//     data = JSON.parse(res.body);
-//     //service_items = data 
-//     service_items[0].primaryText = data[1].name
-//     service_items[0].primaryText = "Ganhar PIX"
-//     service_items[1].primaryText = data[0].name
-//     service_items[2].primaryText = data[2].name
-// }
-// else {console.log("Request failed!")}
-// });
-// console.log(data);
-
-//     return service_items;
-// }
 module.exports = {
   intentIs,
   supportsAPL,

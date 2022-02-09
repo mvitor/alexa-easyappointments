@@ -26,43 +26,6 @@ var options = {
     'maxRedirects': 19
 };
 
-// const LaunchRequestHandler = {
-//     canHandle(handlerInput) {
-//         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
-//         //return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
-//     },
-//     handle(handlerInput) {
-//         //const speechText = 'Bem vindo a Quantic';
-
-//         const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
-
-//         // we call it using requestAttributes.t and reference the string key we want as the argument.
-//         //const speechText = const speechText = requestAttributes.t('WELCOME_MESSAGE');.t('WELCOME_MESSAGE');
-//         const speechText  = "Seja Bem vindo";
-//         // if (supportsAPL(handlerInput)) {
-//         //   return handlerInput.responseBuilder
-//         //     .speak(speechText)
-//         //     .addDirective({
-//         //         type: 'Alexa.Presentation.APL.RenderDocument',
-//         //         document: require('./templates/home.json'),
-//         //         token: 'homepage',
-//         //         datasources: {}
-    
-//         //     })
-
-//         //     .getResponse();
-//         // }
-//         // else {
-//           return handlerInput.responseBuilder
-//             .speak(speechText)
-//             //.reprompt(speechText)
-//             //.withSimpleCard('Try this on an amazon device with a screen', speechText);
-//             //.getResponse();
-// //        }      
-//         ///var imageObj = { smallImageUrl: 'https://imgs.xkcd.com/comics/standards.png', largeImageUrl: 'https://imgs.xkcd.com/comics/standards.png' };
-  
-//       }
-//   };
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
@@ -673,21 +636,6 @@ const ShowServicesHandler = {
         
                 })                
                 .getResponse();
-            // .addDirective({
-            //     type : 'Alexa.Presentation.APL.ExecuteCommands',
-            //     token: "servicespage",
-            //     commands: [
-            //         {
-            //             type: "Parallel",
-            //             commands: [
-            //                 {
-            //                     type: "Idle",
-            //                     delay: 60000
-            //                 }],
-            //         }
-            //     ]
-                
-            // })
 
         }
         else {
@@ -825,20 +773,6 @@ const ScheduleStartHandler = {
             console.log("Got it from http");
         }
 
-        // skip first
-        // skip_one_item = 1
-        // for (var item in service_provider_items){
-        //     // Any sense ?
-        //     if (service_provider_items.hasOwnProperty(item)) {
-        //         service_datasource.itemList.items[skip_one_item].primaryText = service_provider_items[item].firstName+ " "+service_provider_items[item].lastName 
-        //         service_datasource.itemList.items[skip_one_item].secondaryText = "E-mail:"+service_provider_items[item].email+"Telefone: "+service_provider_items[item].phone
-        //         service_datasource.itemList.items[skip_one_item].tertiaryText = "Diga Conhecer "+ServiceName
-        //         //console.log("Key is " + item + ", value is " + service_provider_items[item].firstName);
-        //         skip_one_item = skip_one_item + 1
-        //                 //id: 2, firstName: 'Jóia', lastName: 'Maria', email: 'marciovitormatos@gmail.com', mobile: '', …
-        //     }
-        // }
-
 
         slotName = 'ScheduleMassagist'
         if (! intent.slots.ScheduleMassagist.value)     {
@@ -885,8 +819,6 @@ const ScheduleStartHandler = {
             speech.say("Agora necessito saber seu telefone, com DDD")
             slotName = 'telefone'
             prompt_msg = 'Por favor me diga seu telefone'
-            //sessionAttributes.getPhone = false;
-            //handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
         } 
         // COnfirmed book - let's ask name
         else if (intent.slots.ServiceName.value && intent.slots.ScheduleMassagist.value && intent.slots.ScheduleDate.value && intent.slots.ScheduleTime.value && intent.slots.CONFIRMED.value) {
@@ -899,9 +831,6 @@ const ScheduleStartHandler = {
             speech.say("Por favor me diga inicialmente o seu nome completo")
             slotName = 'nome'
             prompt_msg = 'Por favor me diga inicialmente o seu nome completo'
-            //sessionAttributes.getName = false;
-            //sessionAttributes.getPhone = true;
-            //handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
         }
         // We do have all slots then ask to confirm book it
         else if (intent.slots.ServiceName.value && intent.slots.ScheduleMassagist.value && intent.slots.ScheduleDate.value && intent.slots.ScheduleTime.value) {
@@ -913,9 +842,7 @@ const ScheduleStartHandler = {
                 .pause('50ms')
                 speech.say("Para as "+intent.slots.ScheduleTime.value+" horas")
                 speech.say("Do dia ")
-                //var AmazonDateParser = require('amazon-date-parser');
-                //intent.slots.ScheduleDate.value = 
-                //var date = new AmazonDateParser('2021-02-11');                 
+          
                 var date = '02-11';                 
                 speech.sayAs({
                     //word: intent.slots.ScheduleDate.value,
@@ -962,14 +889,6 @@ const ScheduleStartHandler = {
                 }
             // skip first
             skip_one_item = 1
-            // for (var item in service_availabilities){
-            //     service_datasource.itemList.items[skip_one_item].primaryText = service_provider_items[item].firstName+ " "+service_provider_items[item].lastName 
-            //     service_datasource.itemList.items[skip_one_item].secondaryText = "E-mail:"+service_provider_items[item].email+"Telefone: "+service_provider_items[item].phone
-            //     service_datasource.itemList.items[skip_one_item].tertiaryText = "Diga Conhecer "+ServiceName
-            //     //console.log("Key is " + item + ", value is " + service_provider_items[item].firstName);
-            //     skip_one_item = skip_one_item + 1
-            //             //id: 2, firstName: 'Jóia', lastName: 'Maria', email: 'marciovitormatos@gmail.com', mobile: '', …
-            // }
 
             speech.say("Para qual dia voce gostaria de agendar a massagem?")
             slotName = 'ScheduleDate'
